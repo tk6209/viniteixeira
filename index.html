@@ -566,7 +566,7 @@
                 'project2-role-desc': 'Especialista Principal en la Materia (SME), análisis de procesos e implementación de mejoras.',
                 'project2-challenge-desc': 'Reducir el tiempo y los costos asociados con los procesos de terminación de clientes.',
                 'project2-solution-desc': 'Implementación de nuevas directrices y automación de los pasos del proceso.',
-                'project2-result-desc': 'Reducción de X% en el tiempo de procesamiento y Y% en la reducción de costos operativos.',
+                'project2-result-desc': 'Reducción de X% en el tiempo de procesamiento e Y% na redução de custos operacionais.',
                 'project2-tech-desc': 'Herramientas BPM, Automatización de Procesos.',
                 'project3-title': 'Gestão de Carteras de Productos Digitales',
                 'project3-short-description': 'Gestão de carteras de productos digitales valoradas en más de $60M USD, centrándose en el avance de la seguridad del comercio electrónico.',
@@ -739,36 +739,34 @@
         function updateProjectCardDetails(lang) {
             document.querySelectorAll('.project-card-details').forEach(detailsDiv => {
                 const projectId = detailsDiv.id.replace('-details', ''); // e.g., 'project1'
-                // Only update if the card is open OR if we are changing the language (to ensure all hidden content is ready)
-                if (detailsDiv.classList.contains('open') || true) { // 'true' ensures all are updated on language change
-                    let element;
+                
+                // Select the span elements directly using their data-key
+                let roleSpan = detailsDiv.querySelector(`span[data-key="${projectId}-role-desc"]`);
+                let challengeSpan = detailsDiv.querySelector(`span[data-key="${projectId}-challenge-desc"]`);
+                let solutionSpan = detailsDiv.querySelector(`span[data-key="${projectId}-solution-desc"]`);
+                let resultSpan = detailsDiv.querySelector(`span[data-key="${projectId}-result-desc"]`);
+                let technologiesSpan = detailsDiv.querySelector(`span[data-key="${projectId}-tech-desc"]`);
 
-                    element = detailsDiv.querySelector('[data-key="project-details-role"] + span');
-                    if (element) {
-                        element.textContent = translations[lang][`${projectId}-role-desc`];
-                    }
-                    element = detailsDiv.querySelector('[data-key="project-details-challenge"] + span');
-                    if (element) {
-                        element.textContent = translations[lang][`${projectId}-challenge-desc`];
-                    }
-                    element = detailsDiv.querySelector('[data-key="project-details-solution"] + span');
-                    if (element) {
-                        element.textContent = translations[lang][`${projectId}-solution-desc`];
-                    }
-                    element = detailsDiv.querySelector('[data-key="project-details-result"] + span');
-                    if (element) {
-                        element.textContent = translations[lang][`${projectId}-result-desc`];
-                    }
-                    element = detailsDiv.querySelector('[data-key="project-details-technologies"] + span');
-                    if (element) {
-                        element.textContent = translations[lang][`${projectId}-tech-desc`];
-                    }
-                    
-                    // Update the "Fechar" button text
-                    element = detailsDiv.querySelector('[data-key="project-details-close"]');
-                    if (element) {
-                        element.textContent = translations[lang]['project-details-close'];
-                    }
+                if (roleSpan) {
+                    roleSpan.textContent = translations[lang][`${projectId}-role-desc`];
+                }
+                if (challengeSpan) {
+                    challengeSpan.textContent = translations[lang][`${projectId}-challenge-desc`];
+                }
+                if (solutionSpan) {
+                    solutionSpan.textContent = translations[lang][`${projectId}-solution-desc`];
+                }
+                if (resultSpan) {
+                    resultSpan.textContent = translations[lang][`${projectId}-result-desc`];
+                }
+                if (technologiesSpan) {
+                    technologiesSpan.textContent = translations[lang][`${projectId}-tech-desc`];
+                }
+                
+                // Update the "Fechar" button text
+                let closeButton = detailsDiv.querySelector('[data-key="project-details-close"]');
+                if (closeButton) {
+                    closeButton.textContent = translations[lang]['project-details-close'];
                 }
             });
 
@@ -776,7 +774,9 @@
             document.querySelectorAll('.project-card-button').forEach(button => {
                 const projectId = button.dataset.project;
                 const detailsDiv = document.getElementById(`${projectId}-details`);
-                const buttonTextKey = detailsDiv.classList.contains('open') ? 'project-details-close' : 'project-learn-more';
+                // Check if detailsDiv exists before accessing its classList
+                const isOpen = detailsDiv && detailsDiv.classList.contains('open');
+                const buttonTextKey = isOpen ? 'project-details-close' : 'project-learn-more';
                 button.textContent = translations[lang][buttonTextKey];
             });
         }
@@ -833,23 +833,23 @@
                     // Update content inside the expanded card
                     if (detailsDiv.classList.contains('open')) {
                         let element;
-                        element = detailsDiv.querySelector('[data-key="project-details-role"] + span');
+                        element = detailsDiv.querySelector(`span[data-key="${projectId}-role-desc"]`);
                         if (element) {
                             element.textContent = translations[currentLang][`${projectId}-role-desc`];
                         }
-                        element = detailsDiv.querySelector('[data-key="project-details-challenge"] + span');
+                        element = detailsDiv.querySelector(`span[data-key="${projectId}-challenge-desc"]`);
                         if (element) {
                             element.textContent = translations[currentLang][`${projectId}-challenge-desc`];
                         }
-                        element = detailsDiv.querySelector('[data-key="project-details-solution"] + span');
+                        element = detailsDiv.querySelector(`span[data-key="${projectId}-solution-desc"]`);
                         if (element) {
                             element.textContent = translations[currentLang][`${projectId}-solution-desc`];
                         }
-                        element = detailsDiv.querySelector('[data-key="project-details-result"] + span');
+                        element = detailsDiv.querySelector(`span[data-key="${projectId}-result-desc"]`);
                         if (element) {
                             element.textContent = translations[currentLang][`${projectId}-result-desc`];
                         }
-                        element = detailsDiv.querySelector('[data-key="project-details-technologies"] + span');
+                        element = detailsDiv.querySelector(`span[data-key="${projectId}-tech-desc"]`);
                         if (element) {
                             element.textContent = translations[currentLang][`${projectId}-tech-desc`];
                         }
