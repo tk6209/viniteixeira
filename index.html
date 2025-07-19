@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretor, Soluções de Risco e Identidade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- 
+    Plano Narrativo e Estrutura:
+    1.  Cabeçalho: Apresentar o candidato e sua experiência de alto nível.
+    2.  Competências Essenciais: Visualizar habilidades chave com um Gráfico de Radar.
+    3.  Destaque de Conquistas: Quantificar o impacto do papel anterior no Brasil usando um Gráfico de Barras.
+    4.  Abordagem Estratégica: Delinear um plano para o mercado latino-americano usando um Fluxograma HTML/CSS.
+    5.  Trajetória de Carreira: Mostrar o crescimento profissional com uma Linha do Tempo HTML/CSS.
+    6.  Conclusão e Contato: Resumir o ajuste e fornecer detalhes de contato.
+
+    Plano de Seleção de Visualização:
+    -   Estatística de Experiência Chave -> Objetivo: Informar -> Visualização: Número Grande Único -> Justificativa: Abertura de alto impacto. -> Método: HTML/Tailwind (SEM SVG).
+    -   Competências Essenciais -> Objetivo: Comparar -> Visualização: Gráfico de Radar -> Justificativa: Mostra pontos fortes equilibrados. -> Método: Chart.js (SEM SVG).
+    -   Conquistas Quantificáveis -> Objetivo: Comparar -> Visualização: Gráfico de Barras -> Justificativa: Compara claramente as melhorias métricas. -> Método: Chart.js (SEM SVG).
+    -   Plano Estratégico -> Objetivo: Organizar -> Visualização: Fluxograma -> Justificativa: Demonstra pensamento estratégico. -> Método: HTML/CSS com Tailwind (SEM SVG, SEM MERMAID JS).
+    -   Crescimento de Carreira -> Objetivo: Mudança -> Visualização: Linha do Tempo -> Justificativa: Mostra a experiência ao longo do tempo. -> Método: HTML/CSS com Tailwind (SEM SVG).
+    -   Confirmação final: Nenhum SVG ou Mermaid JS usado.
+
+    Seleção da Paleta de Cores: "Energetic & Playful" (#00A6ED, #72D434, #FFB400, #FF5E5B, #2C2C2C).
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .lang-button {
+            padding: 8px 16px;
+            border-radius: 9999px; /* rounded-full */
+            font-weight: 500; /* font-medium */
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        .lang-button.active {
+            background-color: #00A6ED;
+            color: white;
+            border-color: #00A6ED;
+        }
+        .lang-button:not(.active):hover {
+            background-color: #e0f2fe; /* light blue for hover */
+            color: #00A6ED;
+        }
+    </style>
+</head>
+<body class="text-[#2C2C2C]">
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+        
+        <header class="text-center p-8 bg-white rounded-lg shadow-lg mb-8">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#00A6ED] mb-2" data-key="header-name">Vinicius Teixeira</h1>
+            <p class="text-lg md:text-xl font-semibold text-gray-600" data-key="header-title">Diretor, Soluções de Risco e Identidade</p>
+            <p class="text-md text-gray-500 mt-2" data-key="header-subtitle">Conectando a Expertise Global em Risco ao Mercado Latino-Americano</p>
+            <div class="mt-4 flex justify-center space-x-2">
+                <button id="lang-pt" class="lang-button" data-lang="pt">Português</button>
+                <button id="lang-en" class="lang-button" data-lang="en">English</button>
+                <button id="lang-es" class="lang-button" data-lang="es">Español</button>
+            </div>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row justify-around items-center text-center">
+                <div class="p-4">
+                    <p class="text-6xl font-extrabold text-[#00A6ED]">18+</p>
+                    <p class="text-lg font-semibold mt-2" data-key="experience-years">Anos de Experiência</p>
+                </div>
+                <div class="border-t md:border-t-0 md:border-l border-gray-200 p-4">
+                    <p class="text-6xl font-extrabold text-[#72D434]">98+</p>
+                    <p class="text-lg font-semibold mt-2" data-key="projects-delivered">Projetos Entregues</p>
+                </div>
+                <div class="border-t md:border-t-0 md:border-l border-gray-200 p-4">
+                    <p class="text-6xl font-extrabold text-[#FFB400]">8+</p>
+                    <p class="text-lg font-semibold mt-2" data-key="leadership-years">Anos em Liderança</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-4 text-center" data-key="competencies-title">Competências Essenciais</h2>
+                <p class="text-center text-gray-600 mb-4" data-key="competencies-description">Um conjunto de habilidades equilibrado desenvolvido para liderar equipes de alto desempenho e impulsionar a estratégia de produtos no complexo cenário de pagamentos.</p>
+                <div class="chart-container">
+                    <canvas id="competenciesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-4 text-center" data-key="impact-title">Impacto Quantificável no Brasil</h2>
+                <p class="text-center text-gray-600 mb-4" data-key="impact-description">Liderei iniciativas que entregaram melhorias mensuráveis em eficiência, segurança e satisfação do cliente.</p>
+                <div class="chart-container">
+                    <canvas id="impactChart"></canvas>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-6 text-center" data-key="strategic-approach-title">Abordagem Estratégica para o Mercado Latino-Americano</h2>
+                <p class="text-center text-gray-600 mb-8" data-key="strategic-approach-description">Minha abordagem foca em análise orientada por dados e execução colaborativa para desenvolver e lançar soluções que atendam às necessidades exclusivas de comerciantes, emissores e habilitadores na América Latina.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="text-center p-4 border border-gray-200 rounded-lg w-full md:w-1/5">
+                        <div class="text-3xl text-[#00A6ED] mb-2">1</div>
+                        <h3 class="font-bold" data-key="step1-title">Imersão no Mercado</h3>
+                        <p class="text-sm text-gray-600" data-key="step1-description">Análise aprofundada das necessidades do mercado e cenário regulatório.</p>
+                    </div>
+                    <div class="text-4xl text-gray-300 font-light transform rotate-90 md:rotate-0">→</div>
+                    <div class="text-center p-4 border border-gray-200 rounded-lg w-full md:w-1/5">
+                        <div class="text-3xl text-[#72D434] mb-2">2</div>
+                        <h3 class="font-bold" data-key="step2-title">Análise de Portfólio</h3>
+                        <p class="text-sm text-gray-600" data-key="step2-description">Analisar o portfólio de soluções atual para identificar lacunas e oportunidades chave.</p>
+                    </div>
+                    <div class="text-4xl text-gray-300 font-light transform rotate-90 md:rotate-0">→</div>
+                    <div class="text-center p-4 border border-gray-200 rounded-lg w-full md:w-1/5">
+                        <div class="text-3xl text-[#FFB400] mb-2">3</div>
+                        <h3 class="font-bold" data-key="step3-title">Desenvolvimento de Roadmap</h3>
+                        <p class="text-sm text-gray-600" data-key="step3-description">Desenvolver um roadmap de produtos baseado em dados alinhado aos objetivos de negócio.</p>
+                    </div>
+                     <div class="text-4xl text-gray-300 font-light transform rotate-90 md:rotate-0">→</div>
+                    <div class="text-center p-4 border border-gray-200 rounded-lg w-full md:w-1/5">
+                        <div class="text-3xl text-[#FF5E5B] mb-2">4</div>
+                        <h3 class="font-bold" data-key="step4-title">Go-To-Market</h3>
+                        <p class="text-sm text-gray-600" data-key="step4-description">Liderar equipes multifuncionais para executar uma estratégia de GTM eficaz.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-6 text-center" data-key="trajectory-title">Trajetória Profissional</h2>
+                <p class="text-center text-gray-600 mb-8" data-key="trajectory-description">Uma carreira definida por liderança progressiva e uma profunda especialização em pagamentos, risco e soluções de identidade.</p>
+                <div class="relative border-l-2 border-[#00A6ED] ml-4 md:ml-0">
+                    <div class="mb-8 ml-8">
+                        <div class="absolute -left-[11px] mt-1.5 h-5 w-5 rounded-full bg-[#00A6ED] border-2 border-white"></div>
+                        <p class="text-sm text-gray-500" data-key="exp1-date">Mar 2024 - Presente</p>
+                        <h3 class="text-xl font-bold text-[#00A6ED]" data-key="exp1-title">Head of Identity and Authentication Solutions, RaIS VAS LAC</h3>
+                        <p class="text-gray-700" data-key="exp1-company">Visa</p>
+                        <p class="mt-1 text-sm text-gray-600" data-key="exp1-description">Líder estratégico com foco em crescimento de Serviços de Valor Agregado em Risco e Identidade na América Latina.</p>
+                    </div>
+                    <div class="mb-8 ml-8">
+                        <div class="absolute -left-[11px] mt-1.5 h-5 w-5 rounded-full bg-[#00A6ED] border-2 border-white"></div>
+                        <p class="text-sm text-gray-500" data-key="exp2-date">Fev 2022 - Mai 2024</p>
+                        <h3 class="text-xl font-bold" data-key="exp2-title">Director, Solutions Engineer of Risk and Identity Solutions, VAS LAC</h3>
+                        <p class="text-gray-700" data-key="exp2-company">Visa</p>
+                        <p class="mt-1 text-sm text-gray-600" data-key="exp2-description">Liderança na implementação da solução Visa Secure Data Only, aprimorando o cenário de autenticação baseada em dados.</p>
+                    </div>
+                    <div class="mb-8 ml-8">
+                        <div class="absolute -left-[11px] mt-1.5 h-5 w-5 rounded-full bg-[#00A6ED] border-2 border-white"></div>
+                        <p class="text-sm text-gray-500" data-key="exp3-date">Mar 2021 - 2022</p>
+                        <h3 class="text-xl font-bold" data-key="exp3-title">Gerente de Produtos de Soluções de Cyber Intelligence Solutions</h3>
+                        <p class="text-gray-700" data-key="exp3-company">Mastercard</p>
+                        <p class="mt-1 text-sm text-gray-600" data-key="exp3-description">Liderou a estratégia de go-to-market e aprimoramento de produtos para a divisão de Cyber Intelligence Solutions.</p>
+                    </div>
+                     <div class="mb-8 ml-8">
+                        <div class="absolute -left-[11px] mt-1.5 h-5 w-5 rounded-full bg-[#00A6ED] border-2 border-white"></div>
+                        <p class="text-sm text-gray-500" data-key="exp4-date">Jan 2020 - Mar 2021</p>
+                        <h3 class="text-xl font-bold" data-key="exp4-title">Implementation Manager</h3>
+                        <p class="text-gray-700" data-key="exp4-company">Worldpay</p>
+                        <p class="mt-1 text-sm text-gray-600" data-key="exp4-description">Impulsionou o sucesso de grandes empresas através de integrações fluidas na plataforma global de gateway e adquirência.</p>
+                    </div>
+                     <div class="ml-8">
+                        <div class="absolute -left-[11px] mt-1.5 h-5 w-5 rounded-full bg-[#00A6ED] border-2 border-white"></div>
+                        <p class="text-sm text-gray-500" data-key="exp5-date">Out 2018 - Jan 2020</p>
+                        <h3 class="text-xl font-bold" data-key="exp5-title">Business Operations Specialist</h3>
+                        <p class="text-gray-700" data-key="exp5-company">Worldline Global</p>
+                        <p class="mt-1 text-sm text-gray-600" data-key="exp5-description">Fundamental na otimização de serviços, gestão de operações e suporte técnico para excelência em pagamentos.</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="text-center p-8 mt-8 bg-white rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-[#00A6ED]" data-key="footer-cta">Pronto para Contribuir com o Seu Sucesso</h2>
+            <p class="mt-2 text-gray-600 max-w-2xl mx-auto" data-key="footer-message">Tenho certeza de que minha experiência internacional e foco dedicado em soluções de risco e identidade serão um ativo valioso para sua equipe. Estou animado com a oportunidade de impulsionar a estratégia de risco e identidade da sua organização.</p>
+            <div class="mt-6">
+                <p class="font-semibold" data-key="footer-name">Vinicius Teixeira</p>
+                <a href="mailto:vinicius.escudero@outlook.com" class="text-[#00A6ED] hover:underline" data-key="footer-email">vinicius.escudero@outlook.com</a> | 
+                <a href="tel:+5512992087984" class="text-[#00A6ED] hover:underline" data-key="footer-phone">+55 12 992087984</a> |
+                <a href="https://www.linkedin.com/in/viniciuseteixeira" class="text-[#00A6ED] hover:underline" data-key="footer-linkedin">Perfil do LinkedIn</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // Objeto de tradução
+        const translations = {
+            'pt': {
+                'header-title': 'Diretor, Soluções de Risco e Identidade',
+                'header-subtitle': 'Conectando a Expertise Global em Risco ao Mercado Latino-Americano',
+                'experience-years': 'Anos de Experiência',
+                'projects-delivered': 'Projetos Entregues',
+                'leadership-years': 'Anos em Liderança',
+                'competencies-title': 'Competências Essenciais',
+                'competencies-description': 'Um conjunto de habilidades equilibrado desenvolvido para liderar equipes de alto desempenho e impulsionar a estratégia de produtos no complexo cenário de pagamentos.',
+                'impact-title': 'Impacto Quantificável no Brasil',
+                'impact-description': 'Liderei iniciativas que entregaram melhorias mensuráveis em eficiência, segurança e satisfação do cliente.',
+                'strategic-approach-title': 'Abordagem Estratégica para o Mercado Latino-Americano',
+                'strategic-approach-description': 'Minha abordagem foca em análise orientada por dados e execução colaborativa para desenvolver e lançar soluções que atendam às necessidades exclusivas de comerciantes, emissores e habilitadores na América Latina.',
+                'step1-title': 'Imersão no Mercado',
+                'step1-description': 'Análise aprofundada das necessidades do mercado e cenário regulatório.',
+                'step2-title': 'Análise de Portfólio',
+                'step2-description': 'Analisar o portfólio de soluções atual para identificar lacunas e oportunidades chave.',
+                'step3-title': 'Desenvolvimento de Roadmap',
+                'step3-description': 'Desenvolver um roadmap de produtos baseado em dados alinhado aos objetivos de negócio.',
+                'step4-title': 'Go-To-Market',
+                'step4-description': 'Liderar equipes multifuncionais para executar uma estratégia de GTM eficaz.',
+                'trajectory-title': 'Trajetória Profissional',
+                'trajectory-description': 'Uma carreira definida por liderança progressiva e uma profunda especialização em pagamentos, risco e soluções de identidade.',
+                'exp1-date': 'Mar 2024 - Presente',
+                'exp1-title': 'Head of Identity and Authentication Solutions, RaIS VAS LAC',
+                'exp1-company': 'Visa',
+                'exp1-description': 'Líder estratégico com foco em crescimento de Serviços de Valor Agregado em Risco e Identidade na América Latina.',
+                'exp2-date': 'Fev 2022 - Mai 2024',
+                'exp2-title': 'Director, Solutions Engineer of Risk and Identity Solutions, VAS LAC',
+                'exp2-company': 'Visa',
+                'exp2-description': 'Liderança na implementação da solução Visa Secure Data Only, aprimorando o cenário de autenticação baseada em dados.',
+                'exp3-date': 'Mar 2021 - 2022',
+                'exp3-title': 'Gerente de Produtos de Soluções de Cyber Intelligence Solutions',
+                'exp3-company': 'Mastercard',
+                'exp3-description': 'Liderou a estratégia de go-to-market e aprimoramento de produtos para a divisão de Cyber Intelligence Solutions.',
+                'exp4-date': 'Jan 2020 - Mar 2021',
+                'exp4-title': 'Implementation Manager',
+                'exp4-company': 'Worldpay',
+                'exp4-description': 'Impulsionou o sucesso de grandes empresas através de integrações fluidas na plataforma global de gateway e adquirência.',
+                'exp5-date': 'Out 2018 - Jan 2020',
+                'exp5-title': 'Business Operations Specialist',
+                'exp5-company': 'Worldline Global',
+                'exp5-description': 'Fundamental na otimização de serviços, gestão de operações e suporte técnico para excelência em pagamentos.',
+                'footer-cta': 'Pronto para Contribuir com o Seu Sucesso',
+                'footer-message': 'Tenho certeza de que minha experiência internacional e foco dedicado em soluções de risco e identidade serão um ativo valioso para sua equipe. Estou animado com a oportunidade de impulsionar a estratégia de risco e identidade da sua organização.',
+                'footer-email': 'vinicius.escudero@outlook.com',
+                'footer-phone': '+55 12 992087984',
+                'footer-linkedin': 'Perfil do LinkedIn',
+                // Chart Labels PT
+                'chart-competencies-labels': ['Roadmap de Produto', 'Estratégia Go-to-Market', ['Gestão de Risco', 'e Fraude'], 'Liderança de Stakeholders', 'Colaboração Multifuncional'],
+                'chart-impact-labels': ['Receita Gerada (Visa Data Only)', 'Penetração de Produto (Visa)', 'Aumento de Vendas (Mastercard Identity Check)', 'Redução Tempo Implementação (Visa)']
+            },
+            'en': {
+                'header-title': 'Director, Risk & Identity Solutions',
+                'header-subtitle': 'Connecting Global Risk Expertise to the Latin American Market',
+                'experience-years': 'Years of Experience',
+                'projects-delivered': 'Projects Delivered',
+                'leadership-years': 'Years in Leadership',
+                'competencies-title': 'Core Competencies',
+                'competencies-description': 'A balanced skill set developed to lead high-performing teams and drive product strategy in the complex payments landscape.',
+                'impact-title': 'Quantifiable Impact in Brazil',
+                'impact-description': 'I led initiatives that delivered measurable improvements in efficiency, security, and customer satisfaction.',
+                'strategic-approach-title': 'Strategic Approach for the Latin American Market',
+                'strategic-approach-description': 'My approach focuses on data-driven analysis and collaborative execution to develop and launch solutions that meet the unique needs of merchants, issuers, and enablers in Latin America.',
+                'step1-title': 'Market Immersion',
+                'step1-description': 'In-depth analysis of market needs and regulatory landscape.',
+                'step2-title': 'Portfolio Analysis',
+                'step2-description': 'Analyze current solutions portfolio to identify key gaps and opportunities.',
+                'step3-title': 'Roadmap Development',
+                'step3-description': 'Develop a data-driven product roadmap aligned with business objectives.',
+                'step4-title': 'Go-To-Market',
+                'step4-description': 'Lead cross-functional teams to execute an effective GTM strategy.',
+                'trajectory-title': 'Professional Trajectory',
+                'trajectory-description': 'A career defined by progressive leadership and a deep specialization in payments, risk, and identity solutions.',
+                'exp1-date': 'Mar 2024 - Present',
+                'exp1-title': 'Head of Identity and Authentication Solutions, RaIS VAS LAC',
+                'exp1-company': 'Visa',
+                'exp1-description': 'Strategic leader focused on growing Value Added Services in Risk and Identity in Latin America.',
+                'exp2-date': 'Feb 2022 - May 2024',
+                'exp2-title': 'Director, Solutions Engineer of Risk and Identity Solutions, VAS LAC',
+                'exp2-company': 'Visa',
+                'exp2-description': 'Leadership in implementing the Visa Secure Data Only solution, enhancing the data-driven authentication landscape.',
+                'exp3-date': 'Mar 2021 - 2022',
+                'exp3-title': 'Product Manager, Cyber Intelligence Solutions',
+                'exp3-company': 'Mastercard',
+                'exp3-description': 'Led go-to-market strategy and product enhancement for the Cyber Intelligence Solutions division.',
+                'exp4-date': 'Jan 2020 - Mar 2021',
+                'exp4-title': 'Implementation Manager',
+                'exp4-company': 'Worldpay',
+                'exp4-description': 'Drove the success of large enterprises through seamless integrations on the global gateway and acquiring platform.',
+                'exp5-date': 'Oct 2018 - Jan 2020',
+                'exp5-title': 'Business Operations Specialist',
+                'exp5-company': 'Worldline Global',
+                'exp5-description': 'Instrumental in optimizing services, managing operations, and providing technical support for payment excellence.',
+                'footer-cta': 'Ready to Contribute to Your Success',
+                'footer-message': 'I am confident that my international experience and dedicated focus on risk and identity solutions will be a valuable asset to your team. I am excited by the opportunity to drive your organization\'s risk and identity strategy.',
+                'footer-email': 'vinicius.escudero@outlook.com',
+                'footer-phone': '+55 12 992087984',
+                'footer-linkedin': 'LinkedIn Profile',
+                // Chart Labels EN
+                'chart-competencies-labels': ['Product Roadmap', 'Go-to-Market Strategy', ['Risk & Fraud', 'Management'], 'Stakeholder Leadership', 'Cross-Functional Collab.'],
+                'chart-impact-labels': ['Revenue Generated (Visa Data Only)', 'Product Penetration (Visa)', 'Sales Increase (Mastercard Identity Check)', 'Implementation Time Reduction (Visa)']
+            },
+            'es': {
+                'header-title': 'Director, Soluciones de Riesgo e Identidad',
+                'header-subtitle': 'Conectando la Experiencia Global en Riesgo al Mercado Latinoamericano',
+                'experience-years': 'Años de Experiencia',
+                'projects-delivered': 'Proyectos Entregados',
+                'leadership-years': 'Años en Liderazgo',
+                'competencies-title': 'Competencias Esenciales',
+                'competencies-description': 'Un conjunto de habilidades equilibrado desarrollado para liderar equipos de alto rendimiento e impulsar la estrategia de productos en el complejo panorama de pagos.',
+                'impact-title': 'Impacto Cuantificable en Brasil',
+                'impact-description': 'Lideré iniciativas que generaron mejoras medibles en eficiencia, seguridad y satisfacción del cliente.',
+                'strategic-approach-title': 'Enfoque Estratégico para el Mercado Latinoamericano',
+                'strategic-approach-description': 'Mi enfoque se centra en el análisis basado en datos y la ejecución colaborativa para desarrollar y lanzar soluciones que satisfagan las necesidades únicas de comerciantes, emisores y habilitadores en América Latina.',
+                'step1-title': 'Inmersión en el Mercado',
+                'step1-description': 'Análisis profundo de las necesidades del mercado y el panorama regulatorio.',
+                'step2-title': 'Análisis de Cartera',
+                'step2-description': 'Analizar la cartera de soluciones actual para identificar brechas y oportunidades clave.',
+                'step3-title': 'Desarrollo de Hoja de Ruta',
+                'step3-description': 'Desarrollar una hoja de ruta de productos basada en datos alineada con los objetivos comerciales.',
+                'step4-title': 'Go-To-Market',
+                'step4-description': 'Liderar equipos multifuncionales para ejecutar una estrategia de GTM eficaz.',
+                'trajectory-title': 'Trayectoria Profesional',
+                'trajectory-description': 'Una carrera definida por un liderazgo progresivo y una profunda especialización en pagos, riesgo y soluciones de identidad.',
+                'exp1-date': 'Mar 2024 - Presente',
+                'exp1-title': 'Head of Identity and Authentication Solutions, RaIS VAS LAC',
+                'exp1-company': 'Visa',
+                'exp1-description': 'Líder estratégico centrado en el crecimiento de Servicios de Valor Agregado en Riesgo e Identidad en América Latina.',
+                'exp2-date': 'Feb 2022 - May 2024',
+                'exp2-title': 'Director, Solutions Engineer of Risk and Identity Solutions, VAS LAC',
+                'exp2-company': 'Visa',
+                'exp2-description': 'Liderazgo en la implementación de la solución Visa Secure Data Only, mejorando el panorama de autenticación basada en datos.',
+                'exp3-date': 'Mar 2021 - 2022',
+                'exp3-title': 'Gerente de Productos de Soluções de Ciberinteligencia',
+                'exp3-company': 'Mastercard',
+                'exp3-description': 'Lideró la estrategia de salida al mercado y la mejora de produtos para a divisão de Soluções de Ciberinteligencia.',
+                'exp4-date': 'Jan 2020 - Mar 2021',
+                'exp4-title': 'Implementation Manager',
+                'exp4-company': 'Worldpay',
+                'exp4-description': 'Impulsó el éxito de grandes empresas a través de integraciones fluidas en la plataforma global de pasarela y adquisición.',
+                'exp5-date': 'Oct 2018 - Jan 2020',
+                'exp5-title': 'Especialista en Operaciones Comerciales',
+                'exp5-company': 'Worldline Global',
+                'exp5-description': 'Fundamental en la optimización de servicios, la gestión de operações e o suporte técnico para a excelência em pagamentos.',
+                'footer-cta': 'Listo para Contribuir a Su Éxito',
+                'footer-message': 'Estoy seguro de que mi experiencia internacional y mi enfoque dedicado en soluciones de riesgo e identidad serán un activo valioso para su equipo. Estoy emocionado por la oportunidad de impulsar la estrategia de riesgo e identidad de su organización.',
+                'footer-email': 'vinicius.escudero@outlook.com',
+                'footer-phone': '+55 12 992087984',
+                'footer-linkedin': 'Perfil de LinkedIn',
+                // Chart Labels ES
+                'chart-competencies-labels': ['Hoja de Ruta de Producto', 'Estrategia Go-to-Market', ['Gestión de Riesgo', 'y Fraude'], 'Liderazgo de Stakeholders', 'Colaboración Multifuncional'],
+                'chart-impact-labels': ['Ingresos Generados (Visa Data Only)', 'Penetración del Producto (Visa)', 'Aumento de Ventas (Mastercard Identity Check)', 'Reducción del Tiempo de Implementación (Visa)']
+            }
+        };
+
+        let competenciesChartInstance = null;
+        let impactChartInstance = null;
+
+        function wrapLabels(label, maxWidth) {
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const sharedTooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        function updateCharts(lang) {
+            // Destroy existing chart instances if they exist
+            if (competenciesChartInstance) {
+                competenciesChartInstance.destroy();
+            }
+            if (impactChartInstance) {
+                impactChartInstance.destroy();
+            }
+
+            // Competencies Chart
+            const competenciesCtx = document.getElementById('competenciesChart').getContext('2d');
+            competenciesChartInstance = new Chart(competenciesCtx, {
+                type: 'radar',
+                data: {
+                    labels: translations[lang]['chart-competencies-labels'],
+                    datasets: [{
+                        label: translations[lang]['competencies-title'], // Use translated title for dataset label
+                        data: [9, 9, 8, 9, 8],
+                        backgroundColor: 'rgba(0, 166, 237, 0.2)',
+                        borderColor: '#00A6ED',
+                        pointBackgroundColor: '#00A6ED',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#00A6ED'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(44, 44, 44, 0.1)' },
+                            grid: { color: 'rgba(44, 44, 44, 0.1)' },
+                            pointLabels: { 
+                                font: { size: 12, family: 'Inter' },
+                                color: '#2C2C2C'
+                            },
+                            ticks: {
+                                backdropColor: 'transparent',
+                                stepSize: 2,
+                                font: { size: 10, family: 'Inter' },
+                                color: '#2C2C2C'
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                title: sharedTooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Impact Chart
+            const impactCtx = document.getElementById('impactChart').getContext('2d');
+            const rawImpactLabels = translations[lang]['chart-impact-labels'];
+            const impactLabels = rawImpactLabels.map(label => wrapLabels(label, 16));
+
+            impactChartInstance = new Chart(impactCtx, {
+                type: 'bar',
+                data: {
+                    labels: impactLabels,
+                    datasets: [{
+                        label: translations[lang]['impact-title'], // Use translated title for dataset label
+                        data: [20, 35, 20, 10], // Data: $20M, 35%, 20%, 10%
+                        backgroundColor: ['#00A6ED', '#72D434', '#FFB400', '#FF5E5B'],
+                        borderColor: ['#00A6ED', '#72D434', '#FFB400', '#FF5E5B'],
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: { display: false },
+                            ticks: {
+                               callback: function(value, index) { 
+                                   // Custom callback to handle different units based on the original label
+                                   const originalLabel = rawImpactLabels[index];
+                                   if (originalLabel.includes('Receita Gerada') || originalLabel.includes('Revenue Generated') || originalLabel.includes('Ingresos Generados')) {
+                                       return '$' + value + 'M'; // For revenue
+                                   }
+                                   return value + '%'; // For percentages
+                               },
+                               color: '#2C2C2C',
+                               font: { family: 'Inter' }
+                            }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: {
+                               color: '#2C2C2C',
+                               font: { family: 'Inter' }
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: sharedTooltipTitleCallback,
+                            label: function(context) {
+                                const originalLabel = rawImpactLabels[context.dataIndex];
+                                if (originalLabel.includes('Receita Gerada') || originalLabel.includes('Revenue Generated') || originalLabel.includes('Ingresos Generados')) {
+                                    return ` ${translations[lang]['chart-impact-labels'][context.dataIndex].join(' ')}: $${context.raw}M`;
+                                }
+                                return ` ${translations[lang]['chart-impact-labels'][context.dataIndex].join(' ')}: ${context.raw}%`;
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.dataset.key;
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            // Update active button styling
+            document.querySelectorAll('.lang-button').forEach(button => {
+                if (button.dataset.lang === lang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+            updateCharts(lang);
+        }
+
+        // Initial language setting and event listener
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-button');
+            
+            // Set default language to English
+            setLanguage('en'); 
+
+            langButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.dataset.lang);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
