@@ -91,8 +91,8 @@
             max-height: 500px; /* Adjust as needed to accommodate content */
             transition: max-height 0.7s ease-in;
         }
-        .project-card-button {
-            background-color: #00A6ED; /* Accent blue for buttons */
+        .project-card-button, .download-button { /* Apply styles to both classes */
+            background-color: #003466; /* Deep blue for buttons */
             color: white;
             padding: 10px 24px;
             border-radius: 9999px;
@@ -103,10 +103,11 @@
             align-items: center;
             justify-content: center;
             margin-top: 16px;
-            box-shadow: 0 4px 10px rgba(0, 166, 237, 0.2); /* Subtle button shadow */
+            box-shadow: 0 4px 10px rgba(0, 52, 102, 0.2); /* Subtle button shadow with deep blue color */
+            border: 1px solid #003466; /* Match border to background */
         }
-        .project-card-button:hover {
-            background-color: #008ac5;
+        .project-card-button:hover, .download-button:hover {
+            background-color: #001f3f; /* Slightly darker deep blue on hover */
             transform: translateY(-2px); /* Slight lift on hover */
         }
         .timeline-dot {
@@ -114,7 +115,14 @@
             border: 3px solid #FFFFFF; /* White border for contrast */
         }
         .timeline-line {
-            border-left-color: #D1D5DB; /* Lighter grey for timeline line */
+            border-left: 2px solid #D1D5DB; /* Lighter grey for timeline line */
+        }
+
+        /* Hide elements when printing */
+        @media print {
+            .lang-button, .download-button {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -135,7 +143,7 @@
         <!-- Professional Summary Section -->
         <div class="card-bg p-6 mb-8">
             <h2 class="text-2xl font-bold mb-4 text-center text-[#003466]" data-key="summary-title">Sobre Mim</h2>
-            <p class="text-center text-gray-700 leading-relaxed" data-key="professional-summary">
+            <p class="text-justify text-gray-700 leading-relaxed" data-key="professional-summary">
                 Como líder estratégico em soluções de Risco e Identidade na América Latina, com experiência na gestão de portfólios de produtos digitais de mais de $60M USD, sou impulsionado pela criação de soluções exponenciais que elevam a segurança no e-commerce. Minha atuação foca na gestão de programas como o Visa Secure e no lançamento de tecnologias globais (Intelligent Data Exchange, Visa Data Only, Payments Passkeys), desenvolvendo estratégias baseadas em dados e roadmaps que aprimoram a experiência do cliente e a segurança no ecossistema de pagamentos. Minha missão é equilibrar segurança com conveniência na jornada de autenticação.
             </p>
         </div>
@@ -267,7 +275,7 @@
                     </div>
 
                     <!-- Project Card 2 -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col">
                         <h3 class="text-xl font-bold mb-2 text-[#72D434]" data-key="project2-title">Otimização de Processos de Rescisão de Clientes</h3>
                         <p class="text-gray-700 mb-4 flex-grow" data-key="project2-short-description">Reengenharia de processos para agilizar e otimizar a rescisão de contratos de clientes, melhorando a eficiência operacional.</p>
                         <button class="project-card-button" data-project="project2" data-key="project-learn-more">Saiba Mais</button>
@@ -282,7 +290,7 @@
                     </div>
 
                     <!-- Project Card 3 -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col">
                         <h3 class="text-xl font-bold mb-2 text-[#FFB400]" data-key="project3-title">Gestão de Portfólios de Produtos Digitais</h3>
                         <p class="text-gray-700 mb-4 flex-grow" data-key="project3-short-description">Gestão de portfólios de produtos digitais com valor superior a $60M USD, focando no avanço da segurança do e-commerce.</p>
                         <button class="project-card-button" data-project="project3" data-key="project-learn-more">Saiba Mais</button>
@@ -313,6 +321,7 @@
                     </a>
                 </div>
             </div>
+            <button id="downloadPdfButton" class="download-button project-card-button mt-8" data-key="download-pdf">Download PDF</button>
             <div class="text-center text-xs text-gray-500 mt-4" data-key="footer-copyright">
                 Vinicius Teixeira 2025. All rights reserved.
             </div>
@@ -403,6 +412,7 @@
                 'project-details-result': 'Resultado:',
                 'project-details-technologies': 'Tecnologias:',
                 'project-details-close': 'Fechar',
+                'download-pdf': 'Download PDF',
                 // Chart Labels PT
                 'chart-competencies-labels': ['Roadmap de Produto', 'Estratégia Go-to-Market', ['Gestão de Risco', 'e Fraude'], 'Liderança de Stakeholders', 'Colaboração Multifuncional'],
                 'chart-impact-labels': ['Receita Gerada (Visa Data Only)', 'Penetração de Produto (Visa)', 'Aumento de Vendas (Mastercard Identity Check)', 'Redução Tempo Implementação (Visa)']
@@ -487,6 +497,7 @@
                 'project-details-result': 'Result:',
                 'project-details-technologies': 'Technologies:',
                 'project-details-close': 'Close',
+                'download-pdf': 'Download PDF',
                 // Chart Labels EN
                 'chart-competencies-labels': ['Product Roadmap', 'Go-to-Market Strategy', ['Risk & Fraud', 'Management'], 'Stakeholder Leadership', 'Cross-Functional Collab.'],
                 'chart-impact-labels': ['Revenue Generated (Visa Data Only)', 'Product Penetration (Visa)', 'Sales Increase (Mastercard Identity Check)', 'Implementation Time Reduction (Visa)']
@@ -514,7 +525,7 @@
                 'step4-title': 'Go-To-Market',
                 'step4-description': 'Liderar equipos multifuncionales para ejecutar una estrategia de GTM eficaz.',
                 'trajectory-title': 'Trayectoria Profesional',
-                'trajectory-description': 'Una carrera definida por un liderazgo progresivo y una profunda especialización en pagos, riesgo y soluciones de identidad.',
+                'trajectory-description': 'Una carrera definida por un liderazgo progresivo y una profunda especialização em pagamentos, risco e soluções de identidade.',
                 'exp1-date': 'Mar 2024 - Presente',
                 'exp1-title': 'Head of Identity and Authentication Solutions, RaIS VAS LAC',
                 'exp1-company': 'Visa',
@@ -554,23 +565,24 @@
                 'project2-short-description': 'Reingeniería de procesos para agilizar y optimizar la terminación de contratos de clientes, mejorando la eficiencia operativa.',
                 'project2-role-desc': 'Especialista Principal en la Materia (SME), análisis de procesos e implementación de mejoras.',
                 'project2-challenge-desc': 'Reducir el tiempo y los costos asociados con los procesos de terminación de clientes.',
-                'project2-solution-desc': 'Implementación de nuevas directrices y automatización de los pasos del proceso.',
+                'project2-solution-desc': 'Implementación de nuevas directrices y automación de los pasos del proceso.',
                 'project2-result-desc': 'Reducción de X% en el tiempo de procesamiento y Y% en la reducción de costos operativos.',
                 'project2-tech-desc': 'Herramientas BPM, Automatización de Procesos.',
-                'project3-title': 'Gestión de Carteras de Productos Digitales',
-                'project3-short-description': 'Gestión de carteras de productos digitales valoradas en más de $60M USD, centrándose en el avance de la seguridad del comercio electrónico.',
+                'project3-title': 'Gestão de Carteras de Productos Digitales',
+                'project3-short-description': 'Gestão de carteras de productos digitales valoradas en más de $60M USD, centrándose en el avance de la seguridad del comercio electrónico.',
                 'project3-role-desc': 'Liderazgo de producto, estrategia de hoja de ruta, gestión de P&L.',
                 'project3-challenge-desc': 'Aumentar los ingresos y la seguridad en entornos de comercio electrónico en rápida evolución.',
                 'project3-solution-desc': 'Desarrollo y lanzamiento de soluciones de prevención de ataques de enumeración y programas de rendimiento de autenticación.',
                 'project3-result-desc': 'Crecimiento de los ingresos y mejora de la seguridad, impactando a millones de transações.',
-                'project3-tech-desc': 'Gestión de Productos, Análisis de Mercado, Seguridad de Pagos.',
+                'project3-tech-desc': 'Gestão de Productos, Análisis de Mercado, Seguridad de Pagamentos.',
                 'project-learn-more': 'Saber Más',
                 'project-details-role': 'Mi Rol:',
                 'project-details-challenge': 'Desafío:',
                 'project-details-solution': 'Solución:',
                 'project-details-result': 'Resultado:',
-                'project-details-technologies': 'Tecnologías:',
+                'project-details-technologies': 'Tecnologias:',
                 'project-details-close': 'Cerrar',
+                'download-pdf': 'Download PDF',
                 // Chart Labels ES
                 'chart-competencies-labels': ['Hoja de Ruta de Producto', 'Estratégia Go-to-Market', ['Gestão de Riesgo', 'y Fraude'], 'Liderazgo de Stakeholders', 'Colaboración Multifuncional'],
                 'chart-impact-labels': ['Ingresos Generados (Visa Data Only)', 'Penetración del Producto (Visa)', 'Aumento de Ventas (Mastercard Identity Check)', 'Reducción del Tiempo de Implementación (Visa)']
@@ -729,14 +741,34 @@
                 const projectId = detailsDiv.id.replace('-details', ''); // e.g., 'project1'
                 // Only update if the card is open OR if we are changing the language (to ensure all hidden content is ready)
                 if (detailsDiv.classList.contains('open') || true) { // 'true' ensures all are updated on language change
-                    detailsDiv.querySelector('[data-key="project-details-role"] + span').textContent = translations[lang][`${projectId}-role-desc`];
-                    detailsDiv.querySelector('[data-key="project-details-challenge"] + span').textContent = translations[lang][`${projectId}-challenge-desc`];
-                    detailsDiv.querySelector('[data-key="project-details-solution"] + span').textContent = translations[lang][`${projectId}-solution-desc`];
-                    detailsDiv.querySelector('[data-key="project-details-result"] + span').textContent = translations[lang][`${projectId}-result-desc`];
-                    detailsDiv.querySelector('[data-key="project-details-technologies"] + span').textContent = translations[lang][`${projectId}-tech-desc`];
+                    let element;
+
+                    element = detailsDiv.querySelector('[data-key="project-details-role"] + span');
+                    if (element) {
+                        element.textContent = translations[lang][`${projectId}-role-desc`];
+                    }
+                    element = detailsDiv.querySelector('[data-key="project-details-challenge"] + span');
+                    if (element) {
+                        element.textContent = translations[lang][`${projectId}-challenge-desc`];
+                    }
+                    element = detailsDiv.querySelector('[data-key="project-details-solution"] + span');
+                    if (element) {
+                        element.textContent = translations[lang][`${projectId}-solution-desc`];
+                    }
+                    element = detailsDiv.querySelector('[data-key="project-details-result"] + span');
+                    if (element) {
+                        element.textContent = translations[lang][`${projectId}-result-desc`];
+                    }
+                    element = detailsDiv.querySelector('[data-key="project-details-technologies"] + span');
+                    if (element) {
+                        element.textContent = translations[lang][`${projectId}-tech-desc`];
+                    }
                     
                     // Update the "Fechar" button text
-                    detailsDiv.querySelector('[data-key="project-details-close"]').textContent = translations[lang]['project-details-close'];
+                    element = detailsDiv.querySelector('[data-key="project-details-close"]');
+                    if (element) {
+                        element.textContent = translations[lang]['project-details-close'];
+                    }
                 }
             });
 
@@ -770,6 +802,8 @@
             });
             updateCharts(lang);
             updateProjectCardDetails(lang); // Call the new function to update project details
+            // Update download button text
+            document.getElementById('downloadPdfButton').textContent = translations[lang]['download-pdf'];
         }
 
         // Project card interactivity
@@ -798,13 +832,34 @@
 
                     // Update content inside the expanded card
                     if (detailsDiv.classList.contains('open')) {
-                        detailsDiv.querySelector('[data-key="project-details-role"] + span').textContent = translations[currentLang][`${projectId}-role-desc`];
-                        detailsDiv.querySelector('[data-key="project-details-challenge"] + span').textContent = translations[currentLang][`${projectId}-challenge-desc`];
-                        detailsDiv.querySelector('[data-key="project-details-solution"] + span').textContent = translations[currentLang][`${projectId}-solution-desc`];
-                        detailsDiv.querySelector('[data-key="project-details-result"] + span').textContent = translations[currentLang][`${projectId}-result-desc`];
-                        detailsDiv.querySelector('[data-key="project-details-technologies"] + span').textContent = translations[currentLang][`${projectId}-tech-desc`];
+                        let element;
+                        element = detailsDiv.querySelector('[data-key="project-details-role"] + span');
+                        if (element) {
+                            element.textContent = translations[currentLang][`${projectId}-role-desc`];
+                        }
+                        element = detailsDiv.querySelector('[data-key="project-details-challenge"] + span');
+                        if (element) {
+                            element.textContent = translations[currentLang][`${projectId}-challenge-desc`];
+                        }
+                        element = detailsDiv.querySelector('[data-key="project-details-solution"] + span');
+                        if (element) {
+                            element.textContent = translations[currentLang][`${projectId}-solution-desc`];
+                        }
+                        element = detailsDiv.querySelector('[data-key="project-details-result"] + span');
+                        if (element) {
+                            element.textContent = translations[currentLang][`${projectId}-result-desc`];
+                        }
+                        element = detailsDiv.querySelector('[data-key="project-details-technologies"] + span');
+                        if (element) {
+                            element.textContent = translations[currentLang][`${projectId}-tech-desc`];
+                        }
                     }
                 });
+            });
+
+            // Download PDF functionality
+            document.getElementById('downloadPdfButton').addEventListener('click', () => {
+                window.print();
             });
         });
     </script>
