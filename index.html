@@ -565,15 +565,15 @@
                 'project2-short-description': 'Reingeniería de procesos para agilizar y optimizar la terminación de contratos de clientes, mejorando la eficiencia operativa.',
                 'project2-role-desc': 'Especialista Principal en la Materia (SME), análisis de procesos e implementación de mejoras.',
                 'project2-challenge-desc': 'Reducir el tiempo y los costos asociados con los procesos de terminación de clientes.',
-                'project2-solution-desc': 'Implementación de nuevas directrices y automación de los pasos del proceso.',
+                'project2-solution-desc': 'Implementación de nuevas directrices y automação de los pasos del proceso.',
                 'project2-result-desc': 'Reducción de X% en el tiempo de procesamiento e Y% na redução de custos operacionais.',
                 'project2-tech-desc': 'Herramientas BPM, Automatización de Procesos.',
                 'project3-title': 'Gestão de Carteras de Productos Digitales',
                 'project3-short-description': 'Gestão de carteras de productos digitales valoradas en más de $60M USD, centrándose en el avance de la seguridad del comercio electrónico.',
                 'project3-role-desc': 'Liderazgo de producto, estrategia de hoja de ruta, gestión de P&L.',
-                'project3-challenge-desc': 'Aumentar los ingresos y la seguridad en entornos de comercio electrónico en rápida evolución.',
-                'project3-solution-desc': 'Desarrollo y lanzamiento de soluciones de prevención de ataques de enumeración y programas de rendimiento de autenticación.',
-                'project3-result-desc': 'Crecimiento de los ingresos y mejora de la seguridad, impactando a millones de transações.',
+                'project3-challenge-desc': 'Aumentar los ingresos y la seguridad en entornos de comercio electrónico en rápida evolução.',
+                'project3-solution-desc': 'Desarrollo y lanzamiento de soluciones de prevención de ataques de enumeração y programas de rendimiento de autenticação.',
+                'project3-result-desc': 'Crecimiento de los ingresos y mejora de la seguridad, impactando a milhões de transações.',
                 'project3-tech-desc': 'Gestão de Productos, Análisis de Mercado, Seguridad de Pagamentos.',
                 'project-learn-more': 'Saber Más',
                 'project-details-role': 'Mi Rol:',
@@ -740,12 +740,12 @@
             document.querySelectorAll('.project-card-details').forEach(detailsDiv => {
                 const projectId = detailsDiv.id.replace('-details', ''); // e.g., 'project1'
                 
-                // Select the span elements directly using their data-key
-                let roleSpan = detailsDiv.querySelector(`span[data-key="${projectId}-role-desc"]`);
-                let challengeSpan = detailsDiv.querySelector(`span[data-key="${projectId}-challenge-desc"]`);
-                let solutionSpan = detailsDiv.querySelector(`span[data-key="${projectId}-solution-desc"]`);
-                let resultSpan = detailsDiv.querySelector(`span[data-key="${projectId}-result-desc"]`);
-                let technologiesSpan = detailsDiv.querySelector(`span[data-key="${projectId}-tech-desc"]`);
+                // Select the span elements by finding the strong tag and then its next sibling element
+                let roleSpan = detailsDiv.querySelector(`strong[data-key="project-details-role"]`)?.nextElementSibling;
+                let challengeSpan = detailsDiv.querySelector(`strong[data-key="project-details-challenge"]`)?.nextElementSibling;
+                let solutionSpan = detailsDiv.querySelector(`strong[data-key="project-details-solution"]`)?.nextElementSibling;
+                let resultSpan = detailsDiv.querySelector(`strong[data-key="project-details-result"]`)?.nextElementSibling;
+                let technologiesSpan = detailsDiv.querySelector(`strong[data-key="project-details-technologies"]`)?.nextElementSibling;
 
                 if (roleSpan) {
                     roleSpan.textContent = translations[lang][`${projectId}-role-desc`];
@@ -774,8 +774,11 @@
             document.querySelectorAll('.project-card-button').forEach(button => {
                 const projectId = button.dataset.project;
                 const detailsDiv = document.getElementById(`${projectId}-details`);
-                // Check if detailsDiv exists before accessing its classList
-                const isOpen = detailsDiv && detailsDiv.classList.contains('open');
+                // Check if detailsDiv exists and has classList before accessing its classList
+                let isOpen = false;
+                if (detailsDiv && detailsDiv.classList) {
+                    isOpen = detailsDiv.classList.contains('open');
+                }
                 const buttonTextKey = isOpen ? 'project-details-close' : 'project-learn-more';
                 button.textContent = translations[lang][buttonTextKey];
             });
@@ -823,35 +826,42 @@
                 button.addEventListener('click', (event) => {
                     const projectId = event.target.dataset.project;
                     const detailsDiv = document.getElementById(`${projectId}-details`);
-                    detailsDiv.classList.toggle('open');
-                    const currentLang = document.querySelector('.lang-button.active').dataset.lang;
+                    
+                    if (detailsDiv && detailsDiv.classList) { // Ensure detailsDiv and its classList exist
+                        detailsDiv.classList.toggle('open');
+                        const currentLang = document.querySelector('.lang-button.active').dataset.lang;
 
-                    // Update button text
-                    const buttonTextKey = detailsDiv.classList.contains('open') ? 'project-details-close' : 'project-learn-more';
-                    event.target.textContent = translations[currentLang][buttonTextKey];
+                        // Update button text after toggle
+                        let isOpenAfterToggle = false;
+                        if (detailsDiv.classList) { // Explicitly check for classList
+                            isOpenAfterToggle = detailsDiv.classList.contains('open');
+                        }
+                        const buttonTextKey = isOpenAfterToggle ? 'project-details-close' : 'project-learn-more';
+                        event.target.textContent = translations[currentLang][buttonTextKey];
 
-                    // Update content inside the expanded card
-                    if (detailsDiv.classList.contains('open')) {
-                        let element;
-                        element = detailsDiv.querySelector(`span[data-key="${projectId}-role-desc"]`);
-                        if (element) {
-                            element.textContent = translations[currentLang][`${projectId}-role-desc`];
-                        }
-                        element = detailsDiv.querySelector(`span[data-key="${projectId}-challenge-desc"]`);
-                        if (element) {
-                            element.textContent = translations[currentLang][`${projectId}-challenge-desc`];
-                        }
-                        element = detailsDiv.querySelector(`span[data-key="${projectId}-solution-desc"]`);
-                        if (element) {
-                            element.textContent = translations[currentLang][`${projectId}-solution-desc`];
-                        }
-                        element = detailsDiv.querySelector(`span[data-key="${projectId}-result-desc"]`);
-                        if (element) {
-                            element.textContent = translations[currentLang][`${projectId}-result-desc`];
-                        }
-                        element = detailsDiv.querySelector(`span[data-key="${projectId}-tech-desc"]`);
-                        if (element) {
-                            element.textContent = translations[currentLang][`${projectId}-tech-desc`];
+                        // Update content inside the expanded card
+                        if (detailsDiv.classList.contains('open')) { 
+                            let element;
+                            element = detailsDiv.querySelector(`strong[data-key="project-details-role"]`)?.nextElementSibling;
+                            if (element) {
+                                element.textContent = translations[currentLang][`${projectId}-role-desc`];
+                            }
+                            element = detailsDiv.querySelector(`strong[data-key="project-details-challenge"]`)?.nextElementSibling;
+                            if (element) {
+                                element.textContent = translations[currentLang][`${projectId}-challenge-desc`];
+                            }
+                            element = detailsDiv.querySelector(`strong[data-key="project-details-solution"]`)?.nextElementSibling;
+                            if (element) {
+                                element.textContent = translations[currentLang][`${projectId}-solution-desc`];
+                            }
+                            element = detailsDiv.querySelector(`strong[data-key="project-details-result"]`)?.nextElementSibling;
+                            if (element) {
+                                element.textContent = translations[currentLang][`${projectId}-result-desc`];
+                            }
+                            element = detailsDiv.querySelector(`strong[data-key="project-details-technologies"]`)?.nextElementSibling;
+                            if (element) {
+                                element.textContent = translations[currentLang][`${projectId}-tech-desc`];
+                            }
                         }
                     }
                 });
