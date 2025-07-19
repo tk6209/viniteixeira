@@ -12,11 +12,13 @@
     <!-- 
     Plano Narrativo e Estrutura:
     1.  Cabeçalho: Apresentar o candidato e sua experiência de alto nível.
-    2.  Competências Essenciais: Visualizar habilidades chave com um Gráfico de Radar.
-    3.  Destaque de Conquistas: Quantificar o impacto do papel anterior no Brasil usando um Gráfico de Barras.
-    4.  Abordagem Estratégica: Delinear um plano para o mercado latino-americano usando um Fluxograma HTML/CSS.
-    5.  Trajetória de Carreira: Mostrar o crescimento profissional com uma Linha do Tempo HTML/CSS.
-    6.  Conclusão e Contato: Resumir o ajuste e fornecer detalhes de contato.
+    2.  Nova Secção: Introdução/Resumo Profissional.
+    3.  Competências Essenciais: Visualizar habilidades chave com um Gráfico de Radar.
+    4.  Destaque de Conquistas: Quantificar o impacto do papel anterior no Brasil usando um Gráfico de Barras.
+    5.  Abordagem Estratégica: Delinear um plano para o mercado latino-americano usando um Fluxograma HTML/CSS.
+    6.  Trajetória de Carreira: Mostrar o crescimento profissional com uma Linha do Tempo HTML/CSS.
+    7.  Nova Secção: Projetos em Destaque (Estudos de Caso).
+    8.  Conclusão e Contato: Resumir o ajuste e fornecer detalhes de contato.
 
     Plano de Seleção de Visualização:
     -   Estatística de Experiência Chave -> Objetivo: Informar -> Visualização: Número Grande Único -> Justificativa: Abertura de alto impacto. -> Método: HTML/Tailwind (SEM SVG).
@@ -64,6 +66,31 @@
             background-color: #e0f2fe; /* light blue for hover */
             color: #00A6ED;
         }
+        .project-card-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .project-card-details.open {
+            max-height: 500px; /* Adjust as needed to accommodate content */
+            transition: max-height 0.7s ease-in;
+        }
+        .project-card-button {
+            background-color: #00A6ED;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            font-weight: 500;
+            transition: background-color 0.2s ease-in-out;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        .project-card-button:hover {
+            background-color: #008ac5;
+        }
     </style>
 </head>
 <body class="text-[#2C2C2C]">
@@ -79,6 +106,14 @@
                 <button id="lang-es" class="lang-button" data-lang="es">Español</button>
             </div>
         </header>
+
+        <!-- Professional Summary Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#00A6ED]" data-key="summary-title">Sobre Mim</h2>
+            <p class="text-center text-gray-700 leading-relaxed" data-key="professional-summary">
+                Como líder estratégico em soluções de Risco e Identidade na América Latina, com experiência na gestão de portfólios de produtos digitais de mais de $60M USD, sou impulsionado pela criação de soluções exponenciais que elevam a segurança no e-commerce. Minha atuação foca na gestão de programas como o Visa Secure e no lançamento de tecnologias globais (Intelligent Data Exchange, Visa Data Only, Payments Passkeys), desenvolvendo estratégias baseadas em dados e roadmaps que aprimoram a experiência do cliente e a segurança no ecossistema de pagamentos. Minha missão é equilibrar segurança com conveniência na jornada de autenticação.
+            </p>
+        </div>
 
         <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
@@ -185,6 +220,59 @@
                 </div>
             </div>
 
+            <!-- Projetos em Destaque Section -->
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-6 text-center text-[#00A6ED]" data-key="projects-section-title">Projetos em Destaque</h2>
+                <p class="text-center text-gray-600 mb-8" data-key="projects-section-description">Explore os projetos que impulsionaram a inovação e o impacto no setor de pagamentos.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project Card 1 -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col">
+                        <h3 class="text-xl font-bold mb-2 text-[#00A6ED]" data-key="project1-title">Implementação do Visa Secure Data Only</h3>
+                        <p class="text-gray-700 mb-4 flex-grow" data-key="project1-short-description">Liderança na implementação de uma solução de autenticação baseada em dados para aprimorar a segurança e a experiência do cliente.</p>
+                        <button class="project-card-button" data-project="project1" data-key="project-learn-more">Saiba Mais</button>
+                        <div id="project1-details" class="project-card-details mt-4">
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-role">Meu Papel:</strong> <span data-key="project1-role-desc">Liderança técnica e estratégica, gestão de equipas multifuncionais.</span></p>
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-challenge">Desafio:</strong> <span data-key="project1-challenge-desc">Reduzir fraudes e atritos na autenticação de pagamentos online, mantendo a conformidade.</span></p>
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-solution">Solução:</strong> <span data-key="project1-solution-desc">Implementação de uma solução de intercâmbio de dados inteligente para autenticação adaptativa.</span></p>
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-result">Resultado:</strong> <span data-key="project1-result-desc">Aumento de 35% na penetração do produto e melhoria significativa nas taxas de aprovação.</span></p>
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-technologies">Tecnologias:</strong> <span data-key="project1-tech-desc">APIs de Pagamento, Análise de Dados, Sistemas de Risco.</span></p>
+                            <button class="project-card-button" data-project="project1" data-key="project-details-close">Fechar</button>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col">
+                        <h3 class="text-xl font-bold mb-2 text-[#72D434]" data-key="project2-title">Otimização de Processos de Rescisão de Clientes</h3>
+                        <p class="text-gray-700 mb-4 flex-grow" data-key="project2-short-description">Reengenharia de processos para agilizar e otimizar a rescisão de contratos de clientes, melhorando a eficiência operacional.</p>
+                        <button class="project-card-button" data-project="project2" data-key="project-learn-more">Saiba Mais</button>
+                        <div id="project2-details" class="project-card-details mt-4">
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-role">Meu Papel:</strong> <span data-key="project2-role-desc">Especialista Sênior em Assuntos (SME), análise de processos e implementação de melhorias.</span></p>
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-challenge">Desafio:</strong> <span data-key="project2-challenge-desc">Reduzir o tempo e os custos associados aos processos de rescisão de clientes.</span></p>
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-solution">Solução:</strong> <span data-key="project2-solution-desc">Implementação de novas diretrizes e automação de etapas do processo.</span></p>
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-result">Resultado:</strong> <span data-key="project2-result-desc">Redução de X% no tempo de processamento e Y% na redução de custos operacionais.</span></p>
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-technologies">Tecnologias:</strong> <span data-key="project2-tech-desc">Ferramentas de BPM, Automação de Processos.</span></p>
+                            <button class="project-card-button" data-project="project2" data-key="project-details-close">Fechar</button>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col">
+                        <h3 class="text-xl font-bold mb-2 text-[#FFB400]" data-key="project3-title">Gestão de Portfólios de Produtos Digitais</h3>
+                        <p class="text-gray-700 mb-4 flex-grow" data-key="project3-short-description">Gestão de portfólios de produtos digitais com valor superior a $60M USD, focando no avanço da segurança do e-commerce.</p>
+                        <button class="project-card-button" data-project="project3" data-key="project-learn-more">Saiba Mais</button>
+                        <div id="project3-details" class="project-card-details mt-4">
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-role">Meu Papel:</strong> <span data-key="project3-role-desc">Liderança de produto, estratégia de roadmap, gestão de P&L.</span></p>
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-challenge">Desafio:</strong> <span data-key="project3-challenge-desc">Aumentar a receita e a segurança em ambientes de e-commerce em rápida evolução.</span></p>
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-solution">Solução:</strong> <span data-key="project3-solution-desc">Desenvolvimento e lançamento de soluções de prevenção de ataques de enumeração e programas de performance de autenticação.</span></p>
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-result">Resultado:</strong> <span data-key="project3-result-desc">Crescimento de receita e melhoria na segurança, impactando milhões de transações.</span></p>
+                            <p class="text-sm text-gray-800 mb-2"><strong data-key="project-details-technologies">Tecnologias:</strong> <span data-key="project3-tech-desc">Gestão de Produtos, Análise de Mercado, Segurança de Pagamentos.</span></p>
+                            <button class="project-card-button" data-project="project3" data-key="project-details-close">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </main>
 
         <footer class="text-center p-8 mt-8 bg-white rounded-lg shadow-lg">
@@ -213,6 +301,8 @@
             'pt': {
                 'header-title': 'Diretor, Soluções de Risco e Identidade',
                 'header-subtitle': 'Conectando a Expertise Global em Risco ao Mercado Latino-Americano',
+                'summary-title': 'Sobre Mim',
+                'professional-summary': 'Como líder estratégico em soluções de Risco e Identidade na América Latina, com experiência na gestão de portfólios de produtos digitais de mais de $60M USD, sou impulsionado pela criação de soluções exponenciais que elevam a segurança no e-commerce. Minha atuação foca na gestão de programas como o Visa Secure e no lançamento de tecnologias globais (Intelligent Data Exchange, Visa Data Only, Payments Passkeys), desenvolvendo estratégias baseadas em dados e roadmaps que aprimoram a experiência do cliente e a segurança no ecossistema de pagamentos. Minha missão é equilibrar segurança com conveniência na jornada de autenticação.',
                 'experience-years': 'Anos de Experiência',
                 'projects-delivered': 'Projetos Entregues',
                 'leadership-years': 'Anos em Liderança',
@@ -258,6 +348,36 @@
                 'footer-linkedin': 'Perfil do LinkedIn',
                 'footer-podcast-name': 'PagTalks',
                 'footer-copyright': 'Vinicius Teixeira 2025. Todos os direitos reservados.',
+                'projects-section-title': 'Projetos em Destaque',
+                'projects-section-description': 'Explore os projetos que impulsionaram a inovação e o impacto no setor de pagamentos.',
+                'project1-title': 'Implementação do Visa Secure Data Only',
+                'project1-short-description': 'Liderança na implementação de uma solução de autenticação baseada em dados para aprimorar a segurança e a experiência do cliente.',
+                'project1-role-desc': 'Liderança técnica e estratégica, gestão de equipas multifuncionais.',
+                'project1-challenge-desc': 'Reduzir fraudes e atritos na autenticação de pagamentos online, mantendo a conformidade.',
+                'project1-solution-desc': 'Implementação de uma solução de intercâmbio de dados inteligente para autenticação adaptativa.',
+                'project1-result-desc': 'Aumento de 35% na penetração do produto e melhoria significativa nas taxas de aprovação.',
+                'project1-tech-desc': 'APIs de Pagamento, Análise de Dados, Sistemas de Risco.',
+                'project2-title': 'Otimização de Processos de Rescisão de Clientes',
+                'project2-short-description': 'Reengenharia de processos para agilizar e otimizar a rescisão de contratos de clientes, melhorando a eficiência operacional.',
+                'project2-role-desc': 'Especialista Sênior em Assuntos (SME), análise de processos e implementação de melhorias.',
+                'project2-challenge-desc': 'Reduzir o tempo e os custos associados aos processos de rescisão de clientes.',
+                'project2-solution-desc': 'Implementação de novas diretrizes e automação de etapas do processo.',
+                'project2-result-desc': 'Redução de X% no tempo de processamento e Y% na redução de custos operacionais.',
+                'project2-tech-desc': 'Ferramentas de BPM, Automação de Processos.',
+                'project3-title': 'Gestão de Portfólios de Produtos Digitais',
+                'project3-short-description': 'Gestão de portfólios de produtos digitais com valor superior a $60M USD, focando no avanço da segurança do e-commerce.',
+                'project3-role-desc': 'Liderança de produto, estratégia de roadmap, gestão de P&L.',
+                'project3-challenge-desc': 'Aumentar a receita e a segurança em ambientes de e-commerce em rápida evolução.',
+                'project3-solution-desc': 'Desenvolvimento e lançamento de soluções de prevenção de ataques de enumeração e programas de performance de autenticação.',
+                'project3-result-desc': 'Crescimento de receita e melhoria na segurança, impactando milhões de transações.',
+                'project3-tech-desc': 'Gestão de Produtos, Análise de Mercado, Segurança de Pagamentos.',
+                'project-learn-more': 'Saiba Mais',
+                'project-details-role': 'Meu Papel:',
+                'project-details-challenge': 'Desafio:',
+                'project-details-solution': 'Solução:',
+                'project-details-result': 'Resultado:',
+                'project-details-technologies': 'Tecnologias:',
+                'project-details-close': 'Fechar',
                 // Chart Labels PT
                 'chart-competencies-labels': ['Roadmap de Produto', 'Estratégia Go-to-Market', ['Gestão de Risco', 'e Fraude'], 'Liderança de Stakeholders', 'Colaboração Multifuncional'],
                 'chart-impact-labels': ['Receita Gerada (Visa Data Only)', 'Penetração de Produto (Visa)', 'Aumento de Vendas (Mastercard Identity Check)', 'Redução Tempo Implementação (Visa)']
@@ -265,6 +385,8 @@
             'en': {
                 'header-title': 'Director, Risk & Identity Solutions',
                 'header-subtitle': 'Connecting Global Risk Expertise to the Latin American Market',
+                'summary-title': 'About Me',
+                'professional-summary': 'As a strategic leader in Risk and Identity solutions across Latin America, with experience managing digital product portfolios exceeding $60M USD, I am driven by creating exponential solutions that enhance e-commerce security. My focus involves managing programs like Visa Secure and launching global technologies (Intelligent Data Exchange, Visa Data Only, Payments Passkeys), developing data-driven strategies and roadmaps that improve customer experience and security within the payment ecosystem. My mission is to balance security with convenience in the authentication journey.',
                 'experience-years': 'Years of Experience',
                 'projects-delivered': 'Projects Delivered',
                 'leadership-years': 'Years in Leadership',
@@ -310,6 +432,36 @@
                 'footer-linkedin': 'LinkedIn Profile',
                 'footer-podcast-name': 'PagTalks',
                 'footer-copyright': 'Vinicius Teixeira 2025. All rights reserved.',
+                'projects-section-title': 'Featured Projects',
+                'projects-section-description': 'Explore projects that drove innovation and impact in the payment industry.',
+                'project1-title': 'Visa Secure Data Only Implementation',
+                'project1-short-description': 'Led the implementation of a data-driven authentication solution to enhance security and customer experience.',
+                'project1-role-desc': 'Technical and strategic leadership, managing cross-functional teams.',
+                'project1-challenge-desc': 'Reduce fraud and friction in online payment authentication while maintaining compliance.',
+                'project1-solution-desc': 'Implementation of an intelligent data exchange solution for adaptive authentication.',
+                'project1-result-desc': '35% increase in product penetration and significant improvement in approval rates.',
+                'project1-tech-desc': 'Payment APIs, Data Analytics, Risk Systems.',
+                'project2-title': 'Customer Termination Processes Optimization',
+                'project2-short-description': 'Re-engineered processes to streamline and optimize customer contract terminations, improving operational efficiency.',
+                'project2-role-desc': 'Senior Matter Expert (SME), process analysis and improvement implementation.',
+                'project2-challenge-desc': 'Reduce time and costs associated with customer termination processes.',
+                'project2-solution-desc': 'Implementation of new guidelines and automation of process steps.',
+                'project2-result-desc': 'X% reduction in processing time and Y% reduction in operational costs.',
+                'project2-tech-desc': 'BPM Tools, Process Automation.',
+                'project3-title': 'Digital Product Portfolio Management',
+                'project3-short-description': 'Managed digital product portfolios valued over $60M USD, focusing on advancing e-commerce security.',
+                'project3-role-desc': 'Product leadership, roadmap strategy, P&L management.',
+                'project3-challenge-desc': 'Increase revenue and security in rapidly evolving e-commerce environments.',
+                'project3-solution-desc': 'Development and launch of enumeration attack prevention solutions and authentication performance programs.',
+                'project3-result-desc': 'Revenue growth and improved security, impacting millions of transactions.',
+                'project3-tech-desc': 'Product Management, Market Analysis, Payment Security.',
+                'project-learn-more': 'Learn More',
+                'project-details-role': 'My Role:',
+                'project-details-challenge': 'Challenge:',
+                'project-details-solution': 'Solution:',
+                'project-details-result': 'Result:',
+                'project-details-technologies': 'Technologies:',
+                'project-details-close': 'Close',
                 // Chart Labels EN
                 'chart-competencies-labels': ['Product Roadmap', 'Go-to-Market Strategy', ['Risk & Fraud', 'Management'], 'Stakeholder Leadership', 'Cross-Functional Collab.'],
                 'chart-impact-labels': ['Revenue Generated (Visa Data Only)', 'Product Penetration (Visa)', 'Sales Increase (Mastercard Identity Check)', 'Implementation Time Reduction (Visa)']
@@ -317,6 +469,8 @@
             'es': {
                 'header-title': 'Director, Soluciones de Riesgo e Identidad',
                 'header-subtitle': 'Conectando la Experiencia Global en Riesgo al Mercado Latinoamericano',
+                'summary-title': 'Sobre Mí',
+                'professional-summary': 'Como líder estratégico en soluciones de Riesgo e Identidad en América Latina, con experiencia en la gestión de carteras de productos digitales que superan los $60M USD, me impulsa la creación de soluciones exponenciales que mejoran la seguridad en el comercio electrónico. Mi enfoque incluye la gestión de programas como Visa Secure y el lanzamiento de tecnologías globales (Intelligent Data Exchange, Visa Data Only, Payments Passkeys), desarrollando estrategias y hojas de ruta basadas en datos que mejoran la experiencia del cliente y la seguridad en el ecosistema de pagos. Mi misión es equilibrar la seguridad con la conveniencia en el proceso de autenticación.',
                 'experience-years': 'Años de Experiencia',
                 'projects-delivered': 'Proyectos Entregados',
                 'leadership-years': 'Años en Liderazgo',
@@ -362,8 +516,38 @@
                 'footer-linkedin': 'Perfil de LinkedIn',
                 'footer-podcast-name': 'PagTalks',
                 'footer-copyright': 'Vinicius Teixeira 2025. Todos los derechos reservados.',
+                'projects-section-title': 'Proyectos Destacados',
+                'projects-section-description': 'Explore proyectos que impulsaron la innovación y el impacto en la industria de pagos.',
+                'project1-title': 'Implementación de Visa Secure Data Only',
+                'project1-short-description': 'Liderazgo en la implementación de una solución de autenticación basada en datos para mejorar la seguridad y la experiencia del cliente.',
+                'project1-role-desc': 'Liderazgo técnico y estratégico, gestión de equipos multifuncionales.',
+                'project1-challenge-desc': 'Reducir el fraude y la fricción en la autenticación de pagos en línea manteniendo el cumplimiento.',
+                'project1-solution-desc': 'Implementación de una solución inteligente de intercambio de datos para la autenticación adaptativa.',
+                'project1-result-desc': 'Aumento del 35% en la penetración del producto y mejora significativa en las tasas de aprobación.',
+                'project1-tech-desc': 'APIs de Pago, Análisis de Datos, Sistemas de Riesgo.',
+                'project2-title': 'Optimización de Procesos de Terminación de Clientes',
+                'project2-short-description': 'Reingeniería de procesos para agilizar y optimizar la terminación de contratos de clientes, mejorando la eficiencia operativa.',
+                'project2-role-desc': 'Especialista Principal en la Materia (SME), análisis de procesos e implementación de mejoras.',
+                'project2-challenge-desc': 'Reducir el tiempo y los costos asociados con los procesos de terminación de clientes.',
+                'project2-solution-desc': 'Implementación de nuevas directrices y automatización de los pasos del proceso.',
+                'project2-result-desc': 'Reducción de X% en el tiempo de procesamiento y Y% en la reducción de costos operativos.',
+                'project2-tech-desc': 'Herramientas BPM, Automatización de Procesos.',
+                'project3-title': 'Gestión de Carteras de Productos Digitales',
+                'project3-short-description': 'Gestión de carteras de productos digitales valoradas en más de $60M USD, centrándose en el avance de la seguridad del comercio electrónico.',
+                'project3-role-desc': 'Liderazgo de producto, estrategia de hoja de ruta, gestión de P&L.',
+                'project3-challenge-desc': 'Aumentar los ingresos y la seguridad en entornos de comercio electrónico en rápida evolución.',
+                'project3-solution-desc': 'Desarrollo y lanzamiento de soluciones de prevención de ataques de enumeración y programas de rendimiento de autenticación.',
+                'project3-result-desc': 'Crecimiento de los ingresos y mejora de la seguridad, impactando a millones de transacciones.',
+                'project3-tech-desc': 'Gestión de Productos, Análisis de Mercado, Seguridad de Pagos.',
+                'project-learn-more': 'Saber Más',
+                'project-details-role': 'Mi Rol:',
+                'project-details-challenge': 'Desafío:',
+                'project-details-solution': 'Solución:',
+                'project-details-result': 'Resultado:',
+                'project-details-technologies': 'Tecnologías:',
+                'project-details-close': 'Cerrar',
                 // Chart Labels ES
-                'chart-competencies-labels': ['Hoja de Ruta de Producto', 'Estrategia Go-to-Market', ['Gestión de Riesgo', 'y Fraude'], 'Liderazgo de Stakeholders', 'Colaboración Multifuncional'],
+                'chart-competencies-labels': ['Hoja de Ruta de Producto', 'Estratégia Go-to-Market', ['Gestión de Riesgo', 'y Fraude'], 'Liderazgo de Stakeholders', 'Colaboración Multifuncional'],
                 'chart-impact-labels': ['Ingresos Generados (Visa Data Only)', 'Penetración del Producto (Visa)', 'Aumento de Ventas (Mastercard Identity Check)', 'Reducción del Tiempo de Implementación (Visa)']
             }
         };
@@ -514,11 +698,41 @@
             });
         }
 
+        // Function to update project card details based on language
+        function updateProjectCardDetails(lang) {
+            document.querySelectorAll('.project-card-details').forEach(detailsDiv => {
+                const projectId = detailsDiv.id.replace('-details', ''); // e.g., 'project1'
+                // Only update if the card is open OR if we are changing the language (to ensure all hidden content is ready)
+                if (detailsDiv.classList.contains('open') || true) { // 'true' ensures all are updated on language change
+                    detailsDiv.querySelector('[data-key="project-details-role"] + span').textContent = translations[lang][`${projectId}-role-desc`];
+                    detailsDiv.querySelector('[data-key="project-details-challenge"] + span').textContent = translations[lang][`${projectId}-challenge-desc`];
+                    detailsDiv.querySelector('[data-key="project-details-solution"] + span').textContent = translations[lang][`${projectId}-solution-desc`];
+                    detailsDiv.querySelector('[data-key="project-details-result"] + span').textContent = translations[lang][`${projectId}-result-desc`];
+                    detailsDiv.querySelector('[data-key="project-details-technologies"] + span').textContent = translations[lang][`${projectId}-tech-desc`];
+                    
+                    // Update the "Fechar" button text
+                    detailsDiv.querySelector('[data-key="project-details-close"]').textContent = translations[lang]['project-details-close'];
+                }
+            });
+
+            // Update the "Saiba Mais" / "Learn More" button text for all cards
+            document.querySelectorAll('.project-card-button').forEach(button => {
+                const projectId = button.dataset.project;
+                const detailsDiv = document.getElementById(`${projectId}-details`);
+                const buttonTextKey = detailsDiv.classList.contains('open') ? 'project-details-close' : 'project-learn-more';
+                button.textContent = translations[lang][buttonTextKey];
+            });
+        }
+
+
         function setLanguage(lang) {
             document.querySelectorAll('[data-key]').forEach(element => {
                 const key = element.dataset.key;
-                if (translations[lang][key]) {
-                    element.textContent = translations[lang][key];
+                // Exclude specific project detail spans from general update, as they are handled by updateProjectCardDetails
+                if (!element.closest('.project-card-details') || element.tagName === 'STRONG') {
+                    if (translations[lang][key]) {
+                        element.textContent = translations[lang][key];
+                    }
                 }
             });
             // Update active button styling
@@ -530,9 +744,10 @@
                 }
             });
             updateCharts(lang);
+            updateProjectCardDetails(lang); // Call the new function to update project details
         }
 
-        // Initial language setting and event listener
+        // Project card interactivity
         document.addEventListener('DOMContentLoaded', () => {
             const langButtons = document.querySelectorAll('.lang-button');
             
@@ -542,6 +757,28 @@
             langButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
                     setLanguage(event.target.dataset.lang);
+                });
+            });
+
+            document.querySelectorAll('.project-card-button').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const projectId = event.target.dataset.project;
+                    const detailsDiv = document.getElementById(`${projectId}-details`);
+                    detailsDiv.classList.toggle('open');
+                    const currentLang = document.querySelector('.lang-button.active').dataset.lang;
+
+                    // Update button text
+                    const buttonTextKey = detailsDiv.classList.contains('open') ? 'project-details-close' : 'project-learn-more';
+                    event.target.textContent = translations[currentLang][buttonTextKey];
+
+                    // Update content inside the expanded card
+                    if (detailsDiv.classList.contains('open')) {
+                        detailsDiv.querySelector('[data-key="project-details-role"] + span').textContent = translations[currentLang][`${projectId}-role-desc`];
+                        detailsDiv.querySelector('[data-key="project-details-challenge"] + span').textContent = translations[currentLang][`${projectId}-challenge-desc`];
+                        detailsDiv.querySelector('[data-key="project-details-solution"] + span').textContent = translations[currentLang][`${projectId}-solution-desc`];
+                        detailsDiv.querySelector('[data-key="project-details-result"] + span').textContent = translations[currentLang][`${projectId}-result-desc`];
+                        detailsDiv.querySelector('[data-key="project-details-technologies"] + span').textContent = translations[currentLang][`${projectId}-tech-desc`];
+                    }
                 });
             });
         });
