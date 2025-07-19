@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- 
     Plano Narrativo e Estrutura:
     1.  Cabeçalho: Apresentar o candidato e sua experiência de alto nível.
@@ -27,13 +27,27 @@
     -   Plano Estratégico -> Objetivo: Organizar -> Visualização: Fluxograma -> Justificativa: Demonstra pensamento estratégico. -> Método: HTML/CSS com Tailwind (SEM SVG, SEM MERMAID JS).
     -   Crescimento de Carreira -> Objetivo: Mudança -> Visualização: Linha do Tempo -> Justificativa: Mostra a experiência ao longo do tempo. -> Método: HTML/CSS com Tailwind (SEM SVG).
     -   Confirmação final: Nenhum SVG ou Mermaid JS usado.
-
-    Seleção da Paleta de Cores: "Energetic & Playful" (#00A6ED, #72D434, #FFB400, #FF5E5B, #2C2C2C).
     -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
+            background-color: #F5F7FA; /* Light blue-gray for a sophisticated background */
+            color: #333333; /* Darker text for better contrast */
+        }
+        .container {
+            max-width: 1200px; /* Wider container for more spacious feel */
+        }
+        .header-bg, .card-bg, .footer-bg {
+            background-color: #FFFFFF; /* Pure white for cards and main sections */
+            border-radius: 12px; /* Slightly more rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Softer, more diffused shadow */
+        }
+        h1, h2 {
+            color: #003466; /* Deep Visa blue for main headings */
+            font-weight: 800; /* Extra bold for impact */
+        }
+        .text-accent-blue {
+            color: #00A6ED; /* Lighter accent blue for highlights */
         }
         .chart-container {
             position: relative;
@@ -50,21 +64,23 @@
             }
         }
         .lang-button {
-            padding: 8px 16px;
+            padding: 10px 24px; /* Larger buttons */
             border-radius: 9999px; /* rounded-full */
-            font-weight: 500; /* font-medium */
-            transition: all 0.2s ease-in-out;
+            font-weight: 600; /* Semi-bold */
+            transition: all 0.3s ease-in-out;
             cursor: pointer;
-            border: 1px solid transparent;
+            border: 1px solid #E0E0E0; /* Subtle border */
+            color: #555555;
         }
         .lang-button.active {
-            background-color: #00A6ED;
+            background-color: #003466; /* Deep blue for active state */
             color: white;
-            border-color: #00A6ED;
+            border-color: #003466;
         }
         .lang-button:not(.active):hover {
-            background-color: #e0f2fe; /* light blue for hover */
-            color: #00A6ED;
+            background-color: #e0f2fe; /* Light blue for hover */
+            color: #003466;
+            border-color: #00A6ED;
         }
         .project-card-details {
             max-height: 0;
@@ -76,31 +92,40 @@
             transition: max-height 0.7s ease-in;
         }
         .project-card-button {
-            background-color: #00A6ED;
+            background-color: #00A6ED; /* Accent blue for buttons */
             color: white;
-            padding: 8px 16px;
+            padding: 10px 24px;
             border-radius: 9999px;
-            font-weight: 500;
-            transition: background-color 0.2s ease-in-out;
+            font-weight: 600;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             margin-top: 16px;
+            box-shadow: 0 4px 10px rgba(0, 166, 237, 0.2); /* Subtle button shadow */
         }
         .project-card-button:hover {
             background-color: #008ac5;
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+        .timeline-dot {
+            background-color: #003466; /* Deep blue for timeline dots */
+            border: 3px solid #FFFFFF; /* White border for contrast */
+        }
+        .timeline-line {
+            border-left-color: #D1D5DB; /* Lighter grey for timeline line */
         }
     </style>
 </head>
-<body class="text-[#2C2C2C]">
-    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+<body class="text-[#333333]">
+    <div class="container mx-auto p-4 md:p-8">
         
-        <header class="text-center p-8 bg-white rounded-lg shadow-lg mb-8">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-[#00A6ED] mb-2" data-key="header-name">Vinicius Teixeira</h1>
+        <header class="text-center p-8 header-bg mb-8">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#003466] mb-2" data-key="header-name">Vinicius Teixeira</h1>
             <p class="text-lg md:text-xl font-semibold text-gray-600" data-key="header-title">Diretor, Soluções de Risco e Identidade</p>
             <p class="text-md text-gray-500 mt-2" data-key="header-subtitle">Conectando a Expertise Global em Risco ao Mercado Latino-Americano</p>
-            <div class="mt-4 flex justify-center space-x-2">
+            <div class="mt-6 flex justify-center space-x-4">
                 <button id="lang-pt" class="lang-button" data-lang="pt">Português</button>
                 <button id="lang-en" class="lang-button" data-lang="en">English</button>
                 <button id="lang-es" class="lang-button" data-lang="es">Español</button>
@@ -108,8 +133,8 @@
         </header>
 
         <!-- Professional Summary Section -->
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-center text-[#00A6ED]" data-key="summary-title">Sobre Mim</h2>
+        <div class="card-bg p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#003466]" data-key="summary-title">Sobre Mim</h2>
             <p class="text-center text-gray-700 leading-relaxed" data-key="professional-summary">
                 Como líder estratégico em soluções de Risco e Identidade na América Latina, com experiência na gestão de portfólios de produtos digitais de mais de $60M USD, sou impulsionado pela criação de soluções exponenciais que elevam a segurança no e-commerce. Minha atuação foca na gestão de programas como o Visa Secure e no lançamento de tecnologias globais (Intelligent Data Exchange, Visa Data Only, Payments Passkeys), desenvolvendo estratégias baseadas em dados e roadmaps que aprimoram a experiência do cliente e a segurança no ecossistema de pagamentos. Minha missão é equilibrar segurança com conveniência na jornada de autenticação.
             </p>
@@ -117,9 +142,9 @@
 
         <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row justify-around items-center text-center">
+            <div class="md:col-span-2 card-bg p-6 flex flex-col md:flex-row justify-around items-center text-center">
                 <div class="p-4">
-                    <p class="text-6xl font-extrabold text-[#00A6ED]">18+</p>
+                    <p class="text-6xl font-extrabold text-[#003466]">18+</p>
                     <p class="text-lg font-semibold mt-2" data-key="experience-years">Anos de Experiência</p>
                 </div>
                 <div class="border-t md:border-t-0 md:border-l border-gray-200 p-4">
@@ -132,7 +157,7 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="card-bg p-6">
                 <h2 class="text-2xl font-bold mb-4 text-center" data-key="competencies-title">Competências Essenciais</h2>
                 <p class="text-center text-gray-600 mb-4" data-key="competencies-description">Um conjunto de habilidades equilibrado desenvolvido para liderar equipes de alto desempenho e impulsionar a estratégia de produtos no complexo cenário de pagamentos.</p>
                 <div class="chart-container">
@@ -140,7 +165,7 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="card-bg p-6">
                 <h2 class="text-2xl font-bold mb-4 text-center" data-key="impact-title">Impacto Quantificável no Brasil</h2>
                 <p class="text-center text-gray-600 mb-4" data-key="impact-description">Liderei iniciativas que entregaram melhorias mensuráveis em eficiência, segurança e satisfação do cliente.</p>
                 <div class="chart-container">
@@ -148,72 +173,72 @@
                 </div>
             </div>
 
-            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+            <div class="md:col-span-2 card-bg p-6">
                 <h2 class="text-2xl font-bold mb-6 text-center" data-key="strategic-approach-title">Abordagem Estratégica para o Mercado Latino-Americano</h2>
                 <p class="text-center text-gray-600 mb-8" data-key="strategic-approach-description">Minha abordagem foca em análise orientada por dados e execução colaborativa para desenvolver e lançar soluções que atendam às necessidades exclusivas de comerciantes, emissores e habilitadores na América Latina.</p>
-                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
                     <div class="text-center p-4 border border-gray-200 rounded-lg w-full md:w-1/5">
-                        <div class="text-3xl text-[#00A6ED] mb-2">1</div>
+                        <div class="text-3xl text-[#003466] mb-2 font-bold">1</div>
                         <h3 class="font-bold" data-key="step1-title">Imersão no Mercado</h3>
                         <p class="text-sm text-gray-600" data-key="step1-description">Análise aprofundada das necessidades do mercado e cenário regulatório.</p>
                     </div>
-                    <div class="text-4xl text-gray-300 font-light transform rotate-90 md:rotate-0">→</div>
+                    <div class="text-4xl text-gray-400 font-light transform rotate-90 md:rotate-0">→</div>
                     <div class="text-center p-4 border border-gray-200 rounded-lg w-full md:w-1/5">
-                        <div class="text-3xl text-[#72D434] mb-2">2</div>
+                        <div class="text-3xl text-[#00A6ED] mb-2 font-bold">2</div>
                         <h3 class="font-bold" data-key="step2-title">Análise de Portfólio</h3>
                         <p class="text-sm text-gray-600" data-key="step2-description">Analisar o portfólio de soluções atual para identificar lacunas e oportunidades chave.</p>
                     </div>
-                    <div class="text-4xl text-gray-300 font-light transform rotate-90 md:rotate-0">→</div>
+                    <div class="text-4xl text-gray-400 font-light transform rotate-90 md:rotate-0">→</div>
                     <div class="text-center p-4 border border-gray-200 rounded-lg w-full md:w-1/5">
-                        <div class="text-3xl text-[#FFB400] mb-2">3</div>
+                        <div class="text-3xl text-[#FFB400] mb-2 font-bold">3</div>
                         <h3 class="font-bold" data-key="step3-title">Desenvolvimento de Roadmap</h3>
                         <p class="text-sm text-gray-600" data-key="step3-description">Desenvolver um roadmap de produtos baseado em dados alinhado aos objetivos de negócio.</p>
                     </div>
-                     <div class="text-4xl text-gray-300 font-light transform rotate-90 md:rotate-0">→</div>
+                     <div class="text-4xl text-gray-400 font-light transform rotate-90 md:rotate-0">→</div>
                     <div class="text-center p-4 border border-gray-200 rounded-lg w-full md:w-1/5">
-                        <div class="text-3xl text-[#FF5E5B] mb-2">4</div>
+                        <div class="text-3xl text-[#FF5E5B] mb-2 font-bold">4</div>
                         <h3 class="font-bold" data-key="step4-title">Go-To-Market</h3>
                         <p class="text-sm text-gray-600" data-key="step4-description">Liderar equipes multifuncionais para executar uma estratégia de GTM eficaz.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+            <div class="md:col-span-2 card-bg p-6">
                 <h2 class="text-2xl font-bold mb-6 text-center" data-key="trajectory-title">Trajetória Profissional</h2>
                 <p class="text-center text-gray-600 mb-8" data-key="trajectory-description">Uma carreira definida por liderança progressiva e uma profunda especialização em pagamentos, risco e soluções de identidade.</p>
-                <div class="relative border-l-2 border-[#00A6ED] ml-4 md:ml-0">
-                    <div class="mb-8 ml-8">
-                        <div class="absolute -left-[11px] mt-1.5 h-5 w-5 rounded-full bg-[#00A6ED] border-2 border-white"></div>
+                <div class="relative timeline-line ml-4 md:ml-0">
+                    <div class="mb-10 ml-8">
+                        <div class="absolute -left-[14px] mt-1.5 h-7 w-7 rounded-full timeline-dot"></div>
                         <p class="text-sm text-gray-500" data-key="exp1-date">Mar 2024 - Presente</p>
-                        <h3 class="text-xl font-bold text-[#00A6ED]" data-key="exp1-title">Head of Identity and Authentication Solutions, RaIS VAS LAC</h3>
+                        <h3 class="text-xl font-bold text-[#003466]" data-key="exp1-title">Head of Identity and Authentication Solutions, RaIS VAS LAC</h3>
                         <p class="text-gray-700" data-key="exp1-company">Visa</p>
                         <p class="mt-1 text-sm text-gray-600" data-key="exp1-description">Líder estratégico com foco em crescimento de Serviços de Valor Agregado em Risco e Identidade na América Latina.</p>
                     </div>
-                    <div class="mb-8 ml-8">
-                        <div class="absolute -left-[11px] mt-1.5 h-5 w-5 rounded-full bg-[#00A6ED] border-2 border-white"></div>
+                    <div class="mb-10 ml-8">
+                        <div class="absolute -left-[14px] mt-1.5 h-7 w-7 rounded-full timeline-dot"></div>
                         <p class="text-sm text-gray-500" data-key="exp2-date">Fev 2022 - Mai 2024</p>
-                        <h3 class="text-xl font-bold" data-key="exp2-title">Director, Solutions Engineer of Risk and Identity Solutions, VAS LAC</h3>
+                        <h3 class="text-xl font-bold text-[#003466]" data-key="exp2-title">Director, Solutions Engineer of Risk and Identity Solutions, VAS LAC</h3>
                         <p class="text-gray-700" data-key="exp2-company">Visa</p>
                         <p class="mt-1 text-sm text-gray-600" data-key="exp2-description">Liderança na implementação da solução Visa Secure Data Only, aprimorando o cenário de autenticação baseada em dados.</p>
                     </div>
-                    <div class="mb-8 ml-8">
-                        <div class="absolute -left-[11px] mt-1.5 h-5 w-5 rounded-full bg-[#00A6ED] border-2 border-white"></div>
+                    <div class="mb-10 ml-8">
+                        <div class="absolute -left-[14px] mt-1.5 h-7 w-7 rounded-full timeline-dot"></div>
                         <p class="text-sm text-gray-500" data-key="exp3-date">Mar 2021 - 2022</p>
-                        <h3 class="text-xl font-bold" data-key="exp3-title">Gerente de Produtos de Soluções de Cyber Intelligence Solutions</h3>
+                        <h3 class="text-xl font-bold text-[#003466]" data-key="exp3-title">Gerente de Produtos de Soluções de Cyber Intelligence Solutions</h3>
                         <p class="text-gray-700" data-key="exp3-company">Mastercard</p>
                         <p class="mt-1 text-sm text-gray-600" data-key="exp3-description">Liderou a estratégia de go-to-market e aprimoramento de produtos para a divisão de Cyber Intelligence Solutions.</p>
                     </div>
-                     <div class="mb-8 ml-8">
-                        <div class="absolute -left-[11px] mt-1.5 h-5 w-5 rounded-full bg-[#00A6ED] border-2 border-white"></div>
+                     <div class="mb-10 ml-8">
+                        <div class="absolute -left-[14px] mt-1.5 h-7 w-7 rounded-full timeline-dot"></div>
                         <p class="text-sm text-gray-500" data-key="exp4-date">Jan 2020 - Mar 2021</p>
-                        <h3 class="text-xl font-bold" data-key="exp4-title">Implementation Manager</h3>
+                        <h3 class="text-xl font-bold text-[#003466]" data-key="exp4-title">Implementation Manager</h3>
                         <p class="text-gray-700" data-key="exp4-company">Worldpay</p>
                         <p class="mt-1 text-sm text-gray-600" data-key="exp4-description">Impulsionou o sucesso de grandes empresas através de integrações fluidas na plataforma global de gateway e adquirência.</p>
                     </div>
                      <div class="ml-8">
-                        <div class="absolute -left-[11px] mt-1.5 h-5 w-5 rounded-full bg-[#00A6ED] border-2 border-white"></div>
+                        <div class="absolute -left-[14px] mt-1.5 h-7 w-7 rounded-full timeline-dot"></div>
                         <p class="text-sm text-gray-500" data-key="exp5-date">Out 2018 - Jan 2020</p>
-                        <h3 class="text-xl font-bold" data-key="exp5-title">Business Operations Specialist</h3>
+                        <h3 class="text-xl font-bold text-[#003466]" data-key="exp5-title">Business Operations Specialist</h3>
                         <p class="text-gray-700" data-key="exp5-company">Worldline Global</p>
                         <p class="mt-1 text-sm text-gray-600" data-key="exp5-description">Fundamental na otimização de serviços, gestão de operações e suporte técnico para excelência em pagamentos.</p>
                     </div>
@@ -221,14 +246,14 @@
             </div>
 
             <!-- Projetos em Destaque Section -->
-            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold mb-6 text-center text-[#00A6ED]" data-key="projects-section-title">Projetos em Destaque</h2>
+            <div class="md:col-span-2 card-bg p-6">
+                <h2 class="text-2xl font-bold mb-6 text-center text-[#003466]" data-key="projects-section-title">Projetos em Destaque</h2>
                 <p class="text-center text-gray-600 mb-8" data-key="projects-section-description">Explore os projetos que impulsionaram a inovação e o impacto no setor de pagamentos.</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Project Card 1 -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col">
-                        <h3 class="text-xl font-bold mb-2 text-[#00A6ED]" data-key="project1-title">Implementação do Visa Secure Data Only</h3>
+                        <h3 class="text-xl font-bold mb-2 text-accent-blue" data-key="project1-title">Implementação do Visa Secure Data Only</h3>
                         <p class="text-gray-700 mb-4 flex-grow" data-key="project1-short-description">Liderança na implementação de uma solução de autenticação baseada em dados para aprimorar a segurança e a experiência do cliente.</p>
                         <button class="project-card-button" data-project="project1" data-key="project-learn-more">Saiba Mais</button>
                         <div id="project1-details" class="project-card-details mt-4">
@@ -242,7 +267,7 @@
                     </div>
 
                     <!-- Project Card 2 -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <h3 class="text-xl font-bold mb-2 text-[#72D434]" data-key="project2-title">Otimização de Processos de Rescisão de Clientes</h3>
                         <p class="text-gray-700 mb-4 flex-grow" data-key="project2-short-description">Reengenharia de processos para agilizar e otimizar a rescisão de contratos de clientes, melhorando a eficiência operacional.</p>
                         <button class="project-card-button" data-project="project2" data-key="project-learn-more">Saiba Mais</button>
@@ -257,7 +282,7 @@
                     </div>
 
                     <!-- Project Card 3 -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <h3 class="text-xl font-bold mb-2 text-[#FFB400]" data-key="project3-title">Gestão de Portfólios de Produtos Digitais</h3>
                         <p class="text-gray-700 mb-4 flex-grow" data-key="project3-short-description">Gestão de portfólios de produtos digitais com valor superior a $60M USD, focando no avanço da segurança do e-commerce.</p>
                         <button class="project-card-button" data-project="project3" data-key="project-learn-more">Saiba Mais</button>
@@ -275,15 +300,15 @@
 
         </main>
 
-        <footer class="text-center p-8 mt-8 bg-white rounded-lg shadow-lg">
-            <h2 class="text-2xl font-bold text-[#00A6ED]" data-key="footer-cta">Pronto para Contribuir com o Seu Sucesso</h2>
+        <footer class="text-center p-8 mt-8 footer-bg">
+            <h2 class="text-2xl font-bold text-[#003466]" data-key="footer-cta">Pronto para Contribuir com o Seu Sucesso</h2>
             <p class="mt-2 text-gray-600 max-w-2xl mx-auto" data-key="footer-message">Tenho certeza de que minha experiência internacional e foco dedicado em soluções de risco e identidade serão um ativo valioso para sua equipe. Estou animado com a oportunidade de impulsionar a estratégia de risco e identidade da sua organização.</p>
             <div class="mt-6">
                 <p class="font-semibold" data-key="footer-name">Vinicius Teixeira</p>
                 <div class="text-gray-600 flex justify-center flex-wrap gap-x-2">
-                    <a href="mailto:vinicius.escudero@outlook.com" class="text-[#00A6ED] hover:underline" data-key="footer-email">vinicius.escudero@outlook.com</a> <span class="text-gray-500">|</span>
-                    <a href="https://www.linkedin.com/in/viniciuseteixeira" class="text-[#00A6ED] hover:underline" data-key="footer-linkedin">Perfil do LinkedIn</a> <span class="text-gray-500">|</span>
-                    <a href="https://open.spotify.com/episode/2h98pkinCfBO9wxI777VFo?si=37dc07edf6634fca" class="text-[#00A6ED] hover:underline flex items-center justify-center space-x-1" target="_blank">
+                    <a href="mailto:vinicius.escudero@outlook.com" class="text-accent-blue hover:underline" data-key="footer-email">vinicius.escudero@outlook.com</a> <span class="text-gray-500">|</span>
+                    <a href="https://www.linkedin.com/in/viniciuseteixeira" class="text-accent-blue hover:underline" data-key="footer-linkedin">Perfil do LinkedIn</a> <span class="text-gray-500">|</span>
+                    <a href="https://open.spotify.com/episode/2h98pkinCfBO9wxI777VFo?si=37dc07edf6634fca" class="text-accent-blue hover:underline flex items-center justify-center space-x-1" target="_blank">
                         <span class="text-xl">🎙️</span> <span data-key="footer-podcast-name">PagTalks</span>
                     </a>
                 </div>
@@ -537,7 +562,7 @@
                 'project3-role-desc': 'Liderazgo de producto, estrategia de hoja de ruta, gestión de P&L.',
                 'project3-challenge-desc': 'Aumentar los ingresos y la seguridad en entornos de comercio electrónico en rápida evolución.',
                 'project3-solution-desc': 'Desarrollo y lanzamiento de soluciones de prevención de ataques de enumeración y programas de rendimiento de autenticación.',
-                'project3-result-desc': 'Crecimiento de los ingresos y mejora de la seguridad, impactando a millones de transacciones.',
+                'project3-result-desc': 'Crecimiento de los ingresos y mejora de la seguridad, impactando a millones de transações.',
                 'project3-tech-desc': 'Gestión de Productos, Análisis de Mercado, Seguridad de Pagos.',
                 'project-learn-more': 'Saber Más',
                 'project-details-role': 'Mi Rol:',
@@ -547,7 +572,7 @@
                 'project-details-technologies': 'Tecnologías:',
                 'project-details-close': 'Cerrar',
                 // Chart Labels ES
-                'chart-competencies-labels': ['Hoja de Ruta de Producto', 'Estratégia Go-to-Market', ['Gestión de Riesgo', 'y Fraude'], 'Liderazgo de Stakeholders', 'Colaboración Multifuncional'],
+                'chart-competencies-labels': ['Hoja de Ruta de Producto', 'Estratégia Go-to-Market', ['Gestão de Riesgo', 'y Fraude'], 'Liderazgo de Stakeholders', 'Colaboración Multifuncional'],
                 'chart-impact-labels': ['Ingresos Generados (Visa Data Only)', 'Penetración del Producto (Visa)', 'Aumento de Ventas (Mastercard Identity Check)', 'Reducción del Tiempo de Implementación (Visa)']
             }
         };
@@ -598,29 +623,29 @@
                     datasets: [{
                         label: translations[lang]['competencies-title'], // Use translated title for dataset label
                         data: [9, 9, 8, 9, 8],
-                        backgroundColor: 'rgba(0, 166, 237, 0.2)',
-                        borderColor: '#00A6ED',
-                        pointBackgroundColor: '#00A6ED',
+                        backgroundColor: 'rgba(0, 52, 102, 0.2)', /* Visa Blue with transparency */
+                        borderColor: '#003466', /* Deep Visa blue */
+                        pointBackgroundColor: '#003466',
                         pointBorderColor: '#fff',
                         pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: '#00A6ED'
+                        pointHoverBorderColor: '#003466'
                     }]
                 },
                 options: {
                     maintainAspectRatio: false,
                     scales: {
                         r: {
-                            angleLines: { color: 'rgba(44, 44, 44, 0.1)' },
-                            grid: { color: 'rgba(44, 44, 44, 0.1)' },
+                            angleLines: { color: 'rgba(51, 51, 51, 0.1)' },
+                            grid: { color: 'rgba(51, 51, 51, 0.1)' },
                             pointLabels: { 
                                 font: { size: 12, family: 'Inter' },
-                                color: '#2C2C2C'
+                                color: '#333333'
                             },
                             ticks: {
                                 backdropColor: 'transparent',
                                 stepSize: 2,
                                 font: { size: 10, family: 'Inter' },
-                                color: '#2C2C2C'
+                                color: '#333333'
                             },
                             suggestedMin: 0,
                             suggestedMax: 10
@@ -649,8 +674,8 @@
                     datasets: [{
                         label: translations[lang]['impact-title'], // Use translated title for dataset label
                         data: [20, 35, 20, 10], // Data: $20M, 35%, 20%, 10%
-                        backgroundColor: ['#00A6ED', '#72D434', '#FFB400', '#FF5E5B'],
-                        borderColor: ['#00A6ED', '#72D434', '#FFB400', '#FF5E5B'],
+                        backgroundColor: ['#003466', '#00A6ED', '#FFB400', '#FF5E5B'], /* New color palette */
+                        borderColor: ['#003466', '#00A6ED', '#FFB400', '#FF5E5B'],
                         borderWidth: 1,
                         borderRadius: 4
                     }]
@@ -667,14 +692,14 @@
                                    // Simply return the value for the x-axis ticks
                                    return value;
                                },
-                               color: '#2C2C2C',
+                               color: '#333333',
                                font: { family: 'Inter' }
                             }
                         },
                         y: {
                             grid: { display: false },
                             ticks: {
-                               color: '#2C2C2C',
+                               color: '#333333',
                                font: { family: 'Inter' }
                             }
                         }
