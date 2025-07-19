@@ -336,9 +336,9 @@
                 'exp2-company': 'Visa',
                 'exp2-description': 'Liderazgo en la implementación de la solución Visa Secure Data Only, mejorando el panorama de autenticación basada en datos.',
                 'exp3-date': 'Mar 2021 - 2022',
-                'exp3-title': 'Gerente de Productos de Soluções de Ciberinteligencia',
+                'exp3-title': 'Gerente de Produtos de Soluções de Ciberinteligencia',
                 'exp3-company': 'Mastercard',
-                'exp3-description': 'Lideró la estrategia de salida al mercado y la mejora de produtos para a divisão de Soluções de Ciberinteligencia.',
+                'exp3-description': 'Liderou a estratégia de saída al mercado y la mejora de produtos para a divisão de Soluções de Ciberinteligencia.',
                 'exp4-date': 'Jan 2020 - Mar 2021',
                 'exp4-title': 'Implementation Manager',
                 'exp4-company': 'Worldpay',
@@ -469,13 +469,9 @@
                             beginAtZero: true,
                             grid: { display: false },
                             ticks: {
-                               callback: function(value, index) { 
-                                   // Custom callback to handle different units based on the original label
-                                   const originalLabel = rawImpactLabels[index];
-                                   if (originalLabel.includes('Receita Gerada') || originalLabel.includes('Revenue Generated') || originalLabel.includes('Ingresos Generados')) {
-                                       return '$' + value + 'M'; // For revenue
-                                   }
-                                   return value + '%'; // For percentages
+                               callback: function(value) { 
+                                   // Simply return the value for the x-axis ticks
+                                   return value;
                                },
                                color: '#2C2C2C',
                                font: { family: 'Inter' }
